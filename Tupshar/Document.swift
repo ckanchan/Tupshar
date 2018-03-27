@@ -7,12 +7,48 @@
 //
 
 import Cocoa
+import OraccJSONtoSwift
+
+enum LoadError: Error {
+    case BadData
+}
+
+struct TupsharWrapper: Codable {
+    var text: OraccTextEdition
+    var translation: String
+}
+
+struct ExportedDocument: Codable {
+    let cuneiform: String
+    let transliteration: String
+    let normalisation: String
+    let translation: String
+}
+
 
 class Document: NSDocument {
-
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
+    
+    var text: OraccTextEdition
+    var translation: String
+    var nodes: [OraccCDLNode] = [] {
+        didSet {
+            self.text = OraccTextEdition.createNewText(nodes: nodes)
+            self.ocdlDelegate?.refreshView()
+        }
+    }
+    
+    var selectedNode: Int?
+    weak var ocdlDelegate: OCDLViewDelegate?
+    
+    
     override init() {
+        self.text = OraccTextEdition.createNewText()
+        self.translation = ""
+        
+        encoder.outputFormatting = .prettyPrinted
         super.init()
-        // Add your subclass-specific initialization here.
     }
 
     override class var autosavesInPlace: Bool {
@@ -27,18 +63,45 @@ class Document: NSDocument {
     }
 
     override func data(ofType typeName: String) throws -> Data {
-        // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
-        // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        let wrapper = TupsharWrapper(text: self.text, translation: self.translation)
+        return try encoder.encode(wrapper)
     }
 
     override func read(from data: Data, ofType typeName: String) throws {
-        // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
-        // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
-        // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        if let decoded = try? decoder.decode(TupsharWrapper.self, from: data) {
+            text = decoded.text
+            translation = decoded.translation
+            nodes = decoded.text.cdl
+        } else {
+            throw LoadError.BadData
+        }
     }
 
-
+    
+    @IBAction func export(_ sender: Any){
+        guard let window = self.windowControllers.first?.window else {return}
+        let cuneiform = text.cuneiform
+        let transliteration  = text.transliteration
+        let normalisation = text.transcription
+        let translation = self.translation
+        
+        let exported = ExportedDocument(cuneiform: cuneiform, transliteration: transliteration, normalisation: normalisation, translation: translation)
+        guard let exportedData = try? encoder.encode(exported) else {return}
+        
+        let panel = NSSavePanel()
+        let name = ".txt"
+        panel.nameFieldStringValue = name
+        panel.beginSheetModal(for: window) {modalResponse in
+            if modalResponse == NSApplication.ModalResponse.OK {
+                guard let url = panel.url else {return}
+                do {
+                    try exportedData.write(to: url)
+                } catch {
+                    Swift.print(error.localizedDescription)
+                }
+            }
+            
+        }
+    }
 }
 

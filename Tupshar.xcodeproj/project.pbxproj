@@ -7,14 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5403E9512068D21100EF18CA /* OCDLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5403E9502068D21100EF18CA /* OCDLView.swift */; };
+		5403E9562068E34200EF18CA /* CuneiformNA.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5403E9542068E30A00EF18CA /* CuneiformNA.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD380206A0C4C009E2834 /* EditorViewController.swift */; };
+		540DD383206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */; };
+		546D9BF52068283900E0F156 /* Cuneify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546D9BF42068283900E0F156 /* Cuneify.swift */; };
+		54D81F582068F165002B4C5A /* docicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D81F512068EF62002B4C5A /* docicon.png */; };
 		54F54EBF20681AE000454079 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EBE20681AE000454079 /* AppDelegate.swift */; };
 		54F54EC120681AE000454079 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EC020681AE000454079 /* ViewController.swift */; };
 		54F54EC320681AE000454079 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EC220681AE000454079 /* Document.swift */; };
 		54F54EC520681AE000454079 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54F54EC420681AE000454079 /* Assets.xcassets */; };
 		54F54EC820681AE000454079 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54F54EC620681AE000454079 /* Main.storyboard */; };
+		54F54ED120681B1200454079 /* OraccJSONtoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F54ED020681B1200454079 /* OraccJSONtoSwift.framework */; };
+		54F54ED220681B1200454079 /* OraccJSONtoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54F54ED020681B1200454079 /* OraccJSONtoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		54F54ED420681B1200454079 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F54ED320681B1200454079 /* ZIPFoundation.framework */; };
+		54F54ED520681B1200454079 /* ZIPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54F54ED320681B1200454079 /* ZIPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5403E9552068E33100EF18CA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = fonts;
+			dstSubfolderSpec = 7;
+			files = (
+				5403E9562068E34200EF18CA /* CuneiformNA.ttf in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54F54ED620681B1300454079 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				54F54ED220681B1200454079 /* OraccJSONtoSwift.framework in Embed Frameworks */,
+				54F54ED520681B1200454079 /* ZIPFoundation.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5403E9502068D21100EF18CA /* OCDLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCDLView.swift; sourceTree = "<group>"; };
+		5403E9542068E30A00EF18CA /* CuneiformNA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CuneiformNA.ttf; sourceTree = "<group>"; };
+		540DD380206A0C4C009E2834 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OraccCDLNodeEditorExtensions.swift; sourceTree = "<group>"; };
+		546D9BF42068283900E0F156 /* Cuneify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cuneify.swift; sourceTree = "<group>"; };
+		54D81F512068EF62002B4C5A /* docicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = docicon.png; sourceTree = "<group>"; };
 		54F54EBB20681AE000454079 /* Tupshar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tupshar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F54EBE20681AE000454079 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54F54EC020681AE000454079 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,6 +64,8 @@
 		54F54EC720681AE000454079 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54F54EC920681AE000454079 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54F54ECA20681AE000454079 /* Tupshar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tupshar.entitlements; sourceTree = "<group>"; };
+		54F54ED020681B1200454079 /* OraccJSONtoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OraccJSONtoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54F54ED320681B1200454079 /* ZIPFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZIPFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,15 +73,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54F54ED120681B1200454079 /* OraccJSONtoSwift.framework in Frameworks */,
+				54F54ED420681B1200454079 /* ZIPFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		54D81F552068F0DF002B4C5A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				54D81F512068EF62002B4C5A /* docicon.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		54F54EB220681AE000454079 = {
 			isa = PBXGroup;
 			children = (
+				54D81F552068F0DF002B4C5A /* Resources */,
+				54F54ED320681B1200454079 /* ZIPFoundation.framework */,
+				54F54ED020681B1200454079 /* OraccJSONtoSwift.framework */,
 				54F54EBD20681AE000454079 /* Tupshar */,
 				54F54EBC20681AE000454079 /* Products */,
 			);
@@ -55,8 +111,13 @@
 		54F54EBD20681AE000454079 /* Tupshar */ = {
 			isa = PBXGroup;
 			children = (
+				5403E9542068E30A00EF18CA /* CuneiformNA.ttf */,
+				546D9BF42068283900E0F156 /* Cuneify.swift */,
 				54F54EBE20681AE000454079 /* AppDelegate.swift */,
 				54F54EC020681AE000454079 /* ViewController.swift */,
+				540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */,
+				540DD380206A0C4C009E2834 /* EditorViewController.swift */,
+				5403E9502068D21100EF18CA /* OCDLView.swift */,
 				54F54EC220681AE000454079 /* Document.swift */,
 				54F54EC420681AE000454079 /* Assets.xcassets */,
 				54F54EC620681AE000454079 /* Main.storyboard */,
@@ -75,7 +136,9 @@
 			buildPhases = (
 				54F54EB720681AE000454079 /* Sources */,
 				54F54EB820681AE000454079 /* Frameworks */,
+				5403E9552068E33100EF18CA /* CopyFiles */,
 				54F54EB920681AE000454079 /* Resources */,
+				54F54ED620681B1300454079 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -99,6 +162,11 @@
 					54F54EBA20681AE000454079 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -127,6 +195,7 @@
 			files = (
 				54F54EC520681AE000454079 /* Assets.xcassets in Resources */,
 				54F54EC820681AE000454079 /* Main.storyboard in Resources */,
+				54D81F582068F165002B4C5A /* docicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +207,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				54F54EC120681AE000454079 /* ViewController.swift in Sources */,
+				540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */,
 				54F54EBF20681AE000454079 /* AppDelegate.swift in Sources */,
+				540DD383206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift in Sources */,
 				54F54EC320681AE000454079 /* Document.swift in Sources */,
+				5403E9512068D21100EF18CA /* OCDLView.swift in Sources */,
+				546D9BF52068283900E0F156 /* Cuneify.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +340,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Tupshar/Tupshar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = E5EXHV7YGE;
@@ -283,7 +355,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Tupshar/Tupshar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = E5EXHV7YGE;
