@@ -11,6 +11,8 @@
 		5403E9562068E34200EF18CA /* CuneiformNA.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5403E9542068E30A00EF18CA /* CuneiformNA.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD380206A0C4C009E2834 /* EditorViewController.swift */; };
 		540DD383206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */; };
+		543787112155553B0075E0A2 /* CDKSwiftOracc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543787102155553B0075E0A2 /* CDKSwiftOracc.framework */; };
+		543787122155553B0075E0A2 /* CDKSwiftOracc.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 543787102155553B0075E0A2 /* CDKSwiftOracc.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		546D9BF52068283900E0F156 /* Cuneify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546D9BF42068283900E0F156 /* Cuneify.swift */; };
 		54D81F582068F165002B4C5A /* docicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D81F512068EF62002B4C5A /* docicon.png */; };
 		54F54EBF20681AE000454079 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EBE20681AE000454079 /* AppDelegate.swift */; };
@@ -18,10 +20,6 @@
 		54F54EC320681AE000454079 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EC220681AE000454079 /* Document.swift */; };
 		54F54EC520681AE000454079 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54F54EC420681AE000454079 /* Assets.xcassets */; };
 		54F54EC820681AE000454079 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54F54EC620681AE000454079 /* Main.storyboard */; };
-		54F54ED120681B1200454079 /* OraccJSONtoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F54ED020681B1200454079 /* OraccJSONtoSwift.framework */; };
-		54F54ED220681B1200454079 /* OraccJSONtoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54F54ED020681B1200454079 /* OraccJSONtoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		54F54ED420681B1200454079 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F54ED320681B1200454079 /* ZIPFoundation.framework */; };
-		54F54ED520681B1200454079 /* ZIPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54F54ED320681B1200454079 /* ZIPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,8 +39,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				54F54ED220681B1200454079 /* OraccJSONtoSwift.framework in Embed Frameworks */,
-				54F54ED520681B1200454079 /* ZIPFoundation.framework in Embed Frameworks */,
+				543787122155553B0075E0A2 /* CDKSwiftOracc.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,6 +51,7 @@
 		5403E9542068E30A00EF18CA /* CuneiformNA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CuneiformNA.ttf; sourceTree = "<group>"; };
 		540DD380206A0C4C009E2834 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OraccCDLNodeEditorExtensions.swift; sourceTree = "<group>"; };
+		543787102155553B0075E0A2 /* CDKSwiftOracc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CDKSwiftOracc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		546D9BF42068283900E0F156 /* Cuneify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cuneify.swift; sourceTree = "<group>"; };
 		54D81F512068EF62002B4C5A /* docicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = docicon.png; sourceTree = "<group>"; };
 		54F54EBB20681AE000454079 /* Tupshar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tupshar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,8 +62,6 @@
 		54F54EC720681AE000454079 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54F54EC920681AE000454079 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54F54ECA20681AE000454079 /* Tupshar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tupshar.entitlements; sourceTree = "<group>"; };
-		54F54ED020681B1200454079 /* OraccJSONtoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OraccJSONtoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		54F54ED320681B1200454079 /* ZIPFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZIPFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54F54ED120681B1200454079 /* OraccJSONtoSwift.framework in Frameworks */,
-				54F54ED420681B1200454079 /* ZIPFoundation.framework in Frameworks */,
+				543787112155553B0075E0A2 /* CDKSwiftOracc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,9 +87,8 @@
 		54F54EB220681AE000454079 = {
 			isa = PBXGroup;
 			children = (
+				543787102155553B0075E0A2 /* CDKSwiftOracc.framework */,
 				54D81F552068F0DF002B4C5A /* Resources */,
-				54F54ED320681B1200454079 /* ZIPFoundation.framework */,
-				54F54ED020681B1200454079 /* OraccJSONtoSwift.framework */,
 				54F54EBD20681AE000454079 /* Tupshar */,
 				54F54EBC20681AE000454079 /* Products */,
 			);
@@ -156,11 +150,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Chaitanya Kanchan";
 				TargetAttributes = {
 					54F54EBA20681AE000454079 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -244,6 +239,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -251,6 +247,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -301,6 +298,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -308,6 +306,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -347,7 +346,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ckprivate.2018.Tupshar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -362,7 +361,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ckprivate.2018.Tupshar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

@@ -7,14 +7,14 @@
 //
 
 import Foundation
-import OraccJSONtoSwift
+import CDKSwiftOracc
 
 extension OraccCDLNode {
     
     var lemmaReference: String {
-        switch self.node {
+        switch self {
         case .l(let lemma):
-            return lemma.reference
+            return lemma.reference.description
         default:
             return ""
         }
@@ -36,16 +36,17 @@ extension OraccCDLNode {
         let transl = WordForm.Translation(guideWord: translation, citationForm: nil, sense: translation, partOfSpeech: nil, effectivePartOfSpeech: nil)
         let wordForm = WordForm(language: .Akkadian(.conventional), form: normalisation, graphemeDescriptions: graphemes, normalisation: normalisation, translation: transl, delimiter: " ")
         
-        let reference = UUID().uuidString
+        let referenceString = "U\(UUID().uuidString).0.0"
+        let reference = NodeReference.init(stringLiteral: referenceString)
         
         let lemma = OraccCDLNode.Lemma(fragment: transliteration, instanceTranslation: nil, wordForm: wordForm, reference: reference)
-        let node = OraccCDLNode.init(lemma: lemma)
-        return (reference, node)
+        let node = OraccCDLNode.l(lemma)
+        return (reference.description, node)
         
     }
     
     static func makeGrapheme(syllable: String, delimiter: String) -> GraphemeDescription {
-        let sign: CuneiformSign
+        let sign: CuneiformSignReading
         var logogram = false
         if syllable.uppercased() == syllable {
             // It's a logogram, encode it as such
@@ -55,7 +56,7 @@ extension OraccCDLNode {
             sign = .value(String(syllable))
         }
         
-        let grapheme = GraphemeDescription(graphemeUTF8: cuneifySyllable(String(syllable)), sign: sign, isLogogram: logogram, breakPosition: nil, isDeterminative: nil, group: nil, gdl: nil, sequence: nil, delimiter: delimiter)
+        let grapheme = GraphemeDescription(graphemeUTF8: cuneifySyllable(String(syllable)), sign: sign, isLogogram: logogram, isDeterminative: nil, components: nil, delimiter: delimiter)
         
         return grapheme
     }

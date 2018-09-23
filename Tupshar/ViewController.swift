@@ -7,10 +7,10 @@
 //
 
 import Cocoa
-import OraccJSONtoSwift
+import CDKSwiftOracc
 
 class ViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
-    let baseFont = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+    let defaultFormatting = NSFont.systemFont(ofSize: NSFont.systemFontSize).makeDefaultPreferences()
     let cuneiformNA = NSFont.init(name: "CuneiformNAOutline Medium", size: NSFont.systemFontSize)
     
     @IBAction func changeText(_ sender: Any) {
@@ -26,12 +26,12 @@ class ViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
             ocdlView.isSelectable = false
             ocdlView.backgroundColor = NSColor.windowBackgroundColor
         case 1:
-            ocdlView.textStorage?.setAttributedString(document.text.formattedTransliteration(withFont: baseFont))
+            ocdlView.textStorage?.setAttributedString(document.text.transliterated().render(withPreferences: defaultFormatting))
             ocdlView.isEditable = false
             ocdlView.isSelectable = false
             ocdlView.backgroundColor = NSColor.windowBackgroundColor
         case 2:
-            ocdlView.textStorage?.setAttributedString(document.text.formattedNormalisation(withFont: baseFont))
+            ocdlView.textStorage?.setAttributedString(document.text.normalised().render(withPreferences: defaultFormatting))
             ocdlView.isEditable = true
             ocdlView.isSelectable = true
             ocdlView.backgroundColor = NSColor.white
@@ -41,7 +41,7 @@ class ViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
             }
         case 3:
             ocdlView.string = document.text.literalTranslation
-            ocdlView.font = baseFont
+            ocdlView.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
             ocdlView.isEditable = false
             ocdlView.isSelectable = false
             ocdlView.backgroundColor = NSColor.windowBackgroundColor

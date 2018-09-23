@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import OraccJSONtoSwift
+import CDKSwiftOracc
 
 extension NSViewController {
     var document: Document {
@@ -35,7 +35,7 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
         if normalBox.stringValue.isEmpty || translitBox.stringValue.isEmpty || translateBox.stringValue.isEmpty {
             return
         } else {
-            let (reference, lemma) = OraccCDLNode.makeLemma(normalisation: normalBox.stringValue, transliteration: translitBox.stringValue, translation: translateBox.stringValue)
+            let (_, lemma) = OraccCDLNode.makeLemma(normalisation: normalBox.stringValue, transliteration: translitBox.stringValue, translation: translateBox.stringValue)
             
             if let index = document.selectedNode {
                 document.nodes.insert(lemma, at: index)
