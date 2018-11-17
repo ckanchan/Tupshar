@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C532F00E6E8C594C644177C /* Pods_Tupshar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2EA605869B03FD1B64AA750 /* Pods_Tupshar.framework */; };
 		5403E9512068D21100EF18CA /* OCDLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5403E9502068D21100EF18CA /* OCDLView.swift */; };
 		5403E9562068E34200EF18CA /* CuneiformNA.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5403E9542068E30A00EF18CA /* CuneiformNA.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD380206A0C4C009E2834 /* EditorViewController.swift */; };
 		540DD383206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */; };
+		542D7AC021A0899B00705D3B /* ogsl.json in Resources */ = {isa = PBXBuildFile; fileRef = 542D7ABF21A0899B00705D3B /* ogsl.json */; };
+		542D7AC221A08F3C00705D3B /* String+CuneifyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542D7AC121A08F3C00705D3B /* String+CuneifyExtensions.swift */; };
 		543787112155553B0075E0A2 /* CDKSwiftOracc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543787102155553B0075E0A2 /* CDKSwiftOracc.framework */; };
 		543787122155553B0075E0A2 /* CDKSwiftOracc.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 543787102155553B0075E0A2 /* CDKSwiftOracc.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		546D9BF52068283900E0F156 /* Cuneify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546D9BF42068283900E0F156 /* Cuneify.swift */; };
+		54AA082821A093D3002B43DF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 54AA082721A093D3002B43DF /* Credits.rtf */; };
 		54D81F582068F165002B4C5A /* docicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D81F512068EF62002B4C5A /* docicon.png */; };
 		54F54EBF20681AE000454079 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EBE20681AE000454079 /* AppDelegate.swift */; };
 		54F54EC120681AE000454079 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EC020681AE000454079 /* ViewController.swift */; };
@@ -51,8 +55,11 @@
 		5403E9542068E30A00EF18CA /* CuneiformNA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CuneiformNA.ttf; sourceTree = "<group>"; };
 		540DD380206A0C4C009E2834 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OraccCDLNodeEditorExtensions.swift; sourceTree = "<group>"; };
+		542D7ABF21A0899B00705D3B /* ogsl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ogsl.json; sourceTree = "<group>"; };
+		542D7AC121A08F3C00705D3B /* String+CuneifyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CuneifyExtensions.swift"; sourceTree = "<group>"; };
 		543787102155553B0075E0A2 /* CDKSwiftOracc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CDKSwiftOracc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		546D9BF42068283900E0F156 /* Cuneify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cuneify.swift; sourceTree = "<group>"; };
+		54AA082721A093D3002B43DF /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		54D81F512068EF62002B4C5A /* docicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = docicon.png; sourceTree = "<group>"; };
 		54F54EBB20681AE000454079 /* Tupshar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tupshar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F54EBE20681AE000454079 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +69,9 @@
 		54F54EC720681AE000454079 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54F54EC920681AE000454079 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54F54ECA20681AE000454079 /* Tupshar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tupshar.entitlements; sourceTree = "<group>"; };
+		901C19168E8AE9287D47F9D3 /* Pods-Tupshar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tupshar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tupshar/Pods-Tupshar.debug.xcconfig"; sourceTree = "<group>"; };
+		C8B0BBE13B96977857F8CBB6 /* Pods-Tupshar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tupshar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tupshar/Pods-Tupshar.release.xcconfig"; sourceTree = "<group>"; };
+		F2EA605869B03FD1B64AA750 /* Pods_Tupshar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tupshar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				543787112155553B0075E0A2 /* CDKSwiftOracc.framework in Frameworks */,
+				4C532F00E6E8C594C644177C /* Pods_Tupshar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +102,8 @@
 				54D81F552068F0DF002B4C5A /* Resources */,
 				54F54EBD20681AE000454079 /* Tupshar */,
 				54F54EBC20681AE000454079 /* Products */,
+				DDEAE70DB778DF16FA2DEE3B /* Pods */,
+				D544281B7BA2A53B18E1292A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +120,7 @@
 			children = (
 				5403E9542068E30A00EF18CA /* CuneiformNA.ttf */,
 				546D9BF42068283900E0F156 /* Cuneify.swift */,
+				542D7AC121A08F3C00705D3B /* String+CuneifyExtensions.swift */,
 				54F54EBE20681AE000454079 /* AppDelegate.swift */,
 				54F54EC020681AE000454079 /* ViewController.swift */,
 				540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */,
@@ -116,9 +130,28 @@
 				54F54EC420681AE000454079 /* Assets.xcassets */,
 				54F54EC620681AE000454079 /* Main.storyboard */,
 				54F54EC920681AE000454079 /* Info.plist */,
+				542D7ABF21A0899B00705D3B /* ogsl.json */,
 				54F54ECA20681AE000454079 /* Tupshar.entitlements */,
+				54AA082721A093D3002B43DF /* Credits.rtf */,
 			);
 			path = Tupshar;
+			sourceTree = "<group>";
+		};
+		D544281B7BA2A53B18E1292A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2EA605869B03FD1B64AA750 /* Pods_Tupshar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DDEAE70DB778DF16FA2DEE3B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				901C19168E8AE9287D47F9D3 /* Pods-Tupshar.debug.xcconfig */,
+				C8B0BBE13B96977857F8CBB6 /* Pods-Tupshar.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,11 +161,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 54F54ECD20681AE000454079 /* Build configuration list for PBXNativeTarget "Tupshar" */;
 			buildPhases = (
+				BB597CDD042E994CAF7D3178 /* [CP] Check Pods Manifest.lock */,
 				54F54EB720681AE000454079 /* Sources */,
 				54F54EB820681AE000454079 /* Frameworks */,
 				5403E9552068E33100EF18CA /* CopyFiles */,
 				54F54EB920681AE000454079 /* Resources */,
 				54F54ED620681B1300454079 /* Embed Frameworks */,
+				AA43119E335B07869004EC51 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -188,13 +223,54 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54AA082821A093D3002B43DF /* Credits.rtf in Resources */,
 				54F54EC520681AE000454079 /* Assets.xcassets in Resources */,
 				54F54EC820681AE000454079 /* Main.storyboard in Resources */,
+				542D7AC021A0899B00705D3B /* ogsl.json in Resources */,
 				54D81F582068F165002B4C5A /* docicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA43119E335B07869004EC51 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tupshar/Pods-Tupshar-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CDKSwiftOracc/CDKSwiftOracc.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CDKSwiftOracc.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tupshar/Pods-Tupshar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB597CDD042E994CAF7D3178 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tupshar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		54F54EB720681AE000454079 /* Sources */ = {
@@ -207,6 +283,7 @@
 				540DD383206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift in Sources */,
 				54F54EC320681AE000454079 /* Document.swift in Sources */,
 				5403E9512068D21100EF18CA /* OCDLView.swift in Sources */,
+				542D7AC221A08F3C00705D3B /* String+CuneifyExtensions.swift in Sources */,
 				546D9BF52068283900E0F156 /* Cuneify.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +414,7 @@
 		};
 		54F54ECE20681AE000454079 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 901C19168E8AE9287D47F9D3 /* Pods-Tupshar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -352,6 +430,7 @@
 		};
 		54F54ECF20681AE000454079 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8B0BBE13B96977857F8CBB6 /* Pods-Tupshar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

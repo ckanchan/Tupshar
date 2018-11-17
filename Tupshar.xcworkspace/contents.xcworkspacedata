@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../OraccJSONtoSwift/OraccJSONtoSwift.xcodeproj">
+      location = "group:Tupshar.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:Tupshar.xcodeproj">
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

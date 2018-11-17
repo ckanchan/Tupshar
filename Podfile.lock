@@ -1,0 +1,16 @@
+PODS:
+  - CDKSwiftOracc (0.5.4)
+
+DEPENDENCIES:
+  - CDKSwiftOracc
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CDKSwiftOracc
+
+SPEC CHECKSUMS:
+  CDKSwiftOracc: f8b363435de03aad1eb389b9414917b65bb0cc78
+
+PODFILE CHECKSUM: 66f4da580a24c23bcf0244360d2c4a8fd72c8d27
+
+COCOAPODS: 1.5.3
