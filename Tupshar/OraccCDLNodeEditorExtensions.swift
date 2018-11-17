@@ -10,7 +10,6 @@ import Foundation
 import CDKSwiftOracc
 
 extension OraccCDLNode {
-    
     var lemmaReference: String {
         switch self {
         case .l(let lemma):
@@ -21,16 +20,16 @@ extension OraccCDLNode {
     }
     
     
-    static func makeLemma(normalisation: String, transliteration: String, translation: String) -> (String, OraccCDLNode) {
+    static func makeLemma(normalisation: String, transliteration: String, translation: String, cuneifier: ((String) -> String?)) -> (String, OraccCDLNode) {
         
         var graphemes = [GraphemeDescription]()
         let syllables = transliteration.split(separator: "-")
         for syllable in syllables.dropLast() {
-            let grapheme = OraccCDLNode.makeGrapheme(syllable: String(syllable), delimiter: "-")
+            let grapheme = OraccCDLNode.makeGrapheme(syllable: String(syllable), delimiter: "-", cuneifier: cuneifier)
             graphemes.append(grapheme)
         }
         
-        graphemes.append(makeGrapheme(syllable: String(syllables.last!), delimiter: " "))
+        graphemes.append(makeGrapheme(syllable: String(syllables.last!), delimiter: " ", cuneifier: cuneifier))
         
         
         let transl = WordForm.Translation(guideWord: translation, citationForm: nil, sense: translation, partOfSpeech: nil, effectivePartOfSpeech: nil)
@@ -45,7 +44,7 @@ extension OraccCDLNode {
         
     }
     
-    static func makeGrapheme(syllable: String, delimiter: String) -> GraphemeDescription {
+    static func makeGrapheme(syllable: String, delimiter: String, cuneifier: ((String) -> String?)) -> GraphemeDescription {
         let sign: CuneiformSignReading
         var logogram = false
         if syllable.uppercased() == syllable {
@@ -56,7 +55,7 @@ extension OraccCDLNode {
             sign = .value(String(syllable))
         }
         
-        let grapheme = GraphemeDescription(graphemeUTF8: cuneifySyllable(String(syllable)), sign: sign, isLogogram: logogram, isDeterminative: nil, components: nil, delimiter: delimiter)
+        let grapheme = GraphemeDescription(graphemeUTF8: cuneifier(String(syllable)), sign: sign, isLogogram: logogram, isDeterminative: nil, components: nil, delimiter: delimiter)
         
         return grapheme
     }

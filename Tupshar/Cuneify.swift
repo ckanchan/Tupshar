@@ -8,20 +8,38 @@
 
 import Foundation
 
-let inputXPath = "/html/body/p[1]"
-let cuneiformOutputXPath = "/html/body/p[2]"
-let unsafeChars = CharacterSet(charactersIn: "ḪḫŠšṢṣṬṭÁáÀàÉéÈèÍíÌìÚúÙù")
+struct OSLSign: Codable {
+    var sign: String
+    var unicodeName: String
+    var characterCode: String
+    var utf8: String
+    var values: [String]
+}
 
-func cuneifySyllable(_ syll: String) -> String? {
-    let inputURL = URL(string: "http://oracc.museum.upenn.edu/cgi-bin/cuneify?input=\(syll)")!
+struct LocalCuneifier {
+    var signDictionary: [String: String]
     
-    guard let returnedData = try? XMLDocument(contentsOf: inputURL, options: .documentTidyHTML) else {return nil}
-    guard let cuneiformElement = try? returnedData.nodes(forXPath: cuneiformOutputXPath) else {return nil}
-    let str = String(cuneiformElement.first!.xmlString.dropLast(4))
-    guard let idx = str.index(of: ">") else {return nil}
-    let fIdx = str.index(after: idx)
-    let cuneiform = str.suffix(from: fIdx)
-    let trimmedCuneiform = cuneiform.trimmingCharacters(in: CharacterSet.newlines)
-    return String(trimmedCuneiform)
+    func cuneifySyllable(_ syll: String) -> String? {
+        let input = syll.cuneifyInputEncoded()
+        return self.signDictionary[input] ?? "[X]"
+    }
+    
+    init(json: Data) throws {
+        let decoder = JSONDecoder()
+        let list = try decoder.decode([OSLSign].self, from: json)
+        var dictionary: [String:String] = [:]
+        list.forEach { sign in
+            sign.values.forEach { value in
+                dictionary[value] = sign.utf8
+            }
+        }
+        
+        self.signDictionary = dictionary
+    }
+
+    init(withDictionary dictionary: [String:String]) {
+        self.signDictionary = dictionary
+    }
+
 }
 

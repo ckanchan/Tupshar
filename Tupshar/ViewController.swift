@@ -34,7 +34,7 @@ class ViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
             ocdlView.textStorage?.setAttributedString(document.text.normalised().render(withPreferences: defaultFormatting))
             ocdlView.isEditable = true
             ocdlView.isSelectable = true
-            ocdlView.backgroundColor = NSColor.white
+            ocdlView.backgroundColor = NSColor.textBackgroundColor
             ocdlView.selectionGranularity = NSSelectionGranularity.selectByWord
             if ocdlView.isContinuousSpellCheckingEnabled {
                 ocdlView.toggleContinuousSpellChecking(self)

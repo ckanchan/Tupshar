@@ -15,6 +15,11 @@ extension NSViewController {
         assert(document != nil, "Unable to find document for viewcontroller")
         return document!
     }
+    
+    var cuneifier: LocalCuneifier {
+        let delegate = NSApplication.shared.delegate! as! AppDelegate
+        return delegate.cuneifier
+    }
 }
 
 
@@ -35,7 +40,7 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
         if normalBox.stringValue.isEmpty || translitBox.stringValue.isEmpty || translateBox.stringValue.isEmpty {
             return
         } else {
-            let (_, lemma) = OraccCDLNode.makeLemma(normalisation: normalBox.stringValue, transliteration: translitBox.stringValue, translation: translateBox.stringValue)
+            let (_, lemma) = OraccCDLNode.makeLemma(normalisation: normalBox.stringValue, transliteration: translitBox.stringValue, translation: translateBox.stringValue, cuneifier: cuneifier.cuneifySyllable)
             
             if let index = document.selectedNode {
                 document.nodes.insert(lemma, at: index)
