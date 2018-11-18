@@ -58,6 +58,8 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
             } else {
                 document.nodes.append(lemma)
             }
+            
+            view.window?.isDocumentEdited = true
         }
     }
     
@@ -65,9 +67,7 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
         let textBox = notification.object! as! NSTextView
         if textBox === self.documentTranslationBox {
             document.translation = documentTranslationBox.string
+            view.window?.isDocumentEdited = true
         }
     }
-    
-    
-    
 }
