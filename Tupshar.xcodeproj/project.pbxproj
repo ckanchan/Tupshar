@@ -14,8 +14,6 @@
 		540DD383206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */; };
 		542D7AC021A0899B00705D3B /* ogsl.json in Resources */ = {isa = PBXBuildFile; fileRef = 542D7ABF21A0899B00705D3B /* ogsl.json */; };
 		542D7AC221A08F3C00705D3B /* String+CuneifyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542D7AC121A08F3C00705D3B /* String+CuneifyExtensions.swift */; };
-		543787112155553B0075E0A2 /* CDKSwiftOracc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543787102155553B0075E0A2 /* CDKSwiftOracc.framework */; };
-		543787122155553B0075E0A2 /* CDKSwiftOracc.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 543787102155553B0075E0A2 /* CDKSwiftOracc.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		546D9BF52068283900E0F156 /* Cuneify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546D9BF42068283900E0F156 /* Cuneify.swift */; };
 		54AA082821A093D3002B43DF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 54AA082721A093D3002B43DF /* Credits.rtf */; };
 		54D81F582068F165002B4C5A /* docicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D81F512068EF62002B4C5A /* docicon.png */; };
@@ -43,7 +41,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				543787122155553B0075E0A2 /* CDKSwiftOracc.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,7 +54,6 @@
 		540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OraccCDLNodeEditorExtensions.swift; sourceTree = "<group>"; };
 		542D7ABF21A0899B00705D3B /* ogsl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ogsl.json; sourceTree = "<group>"; };
 		542D7AC121A08F3C00705D3B /* String+CuneifyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CuneifyExtensions.swift"; sourceTree = "<group>"; };
-		543787102155553B0075E0A2 /* CDKSwiftOracc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CDKSwiftOracc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		546D9BF42068283900E0F156 /* Cuneify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cuneify.swift; sourceTree = "<group>"; };
 		54AA082721A093D3002B43DF /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		54D81F512068EF62002B4C5A /* docicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = docicon.png; sourceTree = "<group>"; };
@@ -79,7 +75,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				543787112155553B0075E0A2 /* CDKSwiftOracc.framework in Frameworks */,
 				4C532F00E6E8C594C644177C /* Pods_Tupshar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,7 +93,6 @@
 		54F54EB220681AE000454079 = {
 			isa = PBXGroup;
 			children = (
-				543787102155553B0075E0A2 /* CDKSwiftOracc.framework */,
 				54D81F552068F0DF002B4C5A /* Resources */,
 				54F54EBD20681AE000454079 /* Tupshar */,
 				54F54EBC20681AE000454079 /* Products */,
