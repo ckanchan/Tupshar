@@ -29,9 +29,11 @@ struct OSLSign: Codable {
 struct LocalCuneifier {
     var signDictionary: [String: String]
     
-    func cuneifySyllable(_ syll: String) -> String? {
+    func cuneifySyllable(_ syll: String) -> String {
         let input = syll.cuneifyInputEncoded()
-        return self.signDictionary[input] ?? "[X]"
+        return input.split(separator: "-")
+            .map({self.signDictionary[String($0)] ?? "[X]"})
+            .joined()
     }
     
     init(json: Data) throws {

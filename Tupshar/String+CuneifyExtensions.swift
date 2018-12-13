@@ -29,7 +29,7 @@ extension String {
         return String(scalar)
     }
 }
-
+// TODO :- Convert all normalcased numbers into their unicode subscript forms.
 extension String {
     func cuneifyInputEncoded() -> String {
         if self.decomposedStringWithCanonicalMapping.contains(String.combiningAcuteAccent) {
@@ -39,7 +39,7 @@ extension String {
         } else if self.contains("3") {
             return self.replacingOccurrences(of: "3", with: "₃")
         } else {
-            return self
+            return self.lowercased().replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "meš", with: "me-eš") // Unfortunate hardcoding of meš == me-eš
         }
     }
 }
