@@ -30,8 +30,11 @@ struct LocalCuneifier {
     var signDictionary: [String: String]
     
     func cuneifySyllable(_ syll: String) -> String {
-        let input = syll.cuneifyInputEncoded()
-        return input.split(separator: "-")
+        return syll.lowercased()
+            .replacingOccurrences(of: ".", with: "-")
+            .replacingOccurrences(of: "meš", with: "me-eš")
+            .split(separator: "-")
+            .map({String($0).cuneifyInputEncoded()})
             .map({self.signDictionary[String($0)] ?? "[X]"})
             .joined()
     }
