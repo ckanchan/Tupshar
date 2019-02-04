@@ -96,17 +96,17 @@ class Document: NSDocument {
     
     @IBAction func export(_ sender: Any){
         guard let window = self.windowControllers.first?.window else {return}
-        let cuneiform = text.cuneiform
-        let transliteration  = text.transliteration
-        let normalisation = text.transcription
-        let translation = self.translation
+//        let cuneiform = text.cuneiform
+//        let transliteration  = text.transliteration
+//        let normalisation = text.transcription
+//        let translation = self.translation
+//
+//        let exported = ExportedDocument(cuneiform: cuneiform, transliteration: transliteration, normalisation: normalisation, translation: translation)
+//        guard let exportedData = try? encoder.encode(exported) else {return}
         
-        let exported = ExportedDocument(cuneiform: cuneiform, transliteration: transliteration, normalisation: normalisation, translation: translation)
-        guard let exportedData = try? encoder.encode(exported) else {return}
-        
+        guard let exportedData = convertToDoc() else {return}
         let panel = NSSavePanel()
-        let name = ".txt"
-        panel.nameFieldStringValue = name
+        panel.allowedFileTypes = ["doc"]
         panel.beginSheetModal(for: window) {modalResponse in
             if modalResponse == NSApplication.ModalResponse.OK {
                 guard let url = panel.url else {return}
@@ -118,6 +118,28 @@ class Document: NSDocument {
             }
             
         }
+    }
+    
+    func convertToDoc() -> Data? {
+        let exportFormatting = NSFont(name: "Helvetica", size: NSFont.systemFontSize)!.makeDefaultPreferences()
+        let cuneiformNA = NSFont(name: "CuneiformNAOutline Medium", size: NSFont.systemFontSize)!
+        
+        let cuneiform = NSMutableAttributedString(string: text.cuneiform)
+        cuneiform.addAttributes([NSAttributedString.Key.font: cuneiformNA], range: NSMakeRange(0, cuneiform.length))
+        
+        let transliteration = text.transliterated().render(withPreferences: exportFormatting)
+        let normalisation = text.normalised().render(withPreferences: exportFormatting)
+        let attributedTranslation = NSAttributedString(string: translation)
+        let lineBreak = NSAttributedString(string: "\n")
+        
+        let strings = [cuneiform, lineBreak, transliteration, lineBreak, normalisation, lineBreak, attributedTranslation]
+        let docstring = NSMutableAttributedString()
+        strings.forEach{docstring.append($0)}
+        
+        let docAttributes = [NSAttributedString.DocumentAttributeKey.documentType: NSAttributedString.DocumentType.docFormat]
+        let data = docstring.docFormat(from: NSMakeRange(0, docstring.length), documentAttributes: docAttributes)
+        
+        return data
     }
 }
 

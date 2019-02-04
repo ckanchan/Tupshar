@@ -85,6 +85,7 @@
 			children = (
 				5403E9542068E30A00EF18CA /* CuneiformNA.ttf */,
 				54D81F512068EF62002B4C5A /* docicon.png */,
+				542D7ABF21A0899B00705D3B /* ogsl.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -121,7 +122,6 @@
 				54F54EC420681AE000454079 /* Assets.xcassets */,
 				54F54EC620681AE000454079 /* Main.storyboard */,
 				54F54EC920681AE000454079 /* Info.plist */,
-				542D7ABF21A0899B00705D3B /* ogsl.json */,
 				54F54ECA20681AE000454079 /* Tupshar.entitlements */,
 				54AA082721A093D3002B43DF /* Credits.rtf */,
 			);
