@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  NSViewControllerExtensions.swift
 //  Tupshar: novelty cuneiform text editor
 //  Copyright (C) 2018 Chaitanya Kanchan
 //
@@ -19,20 +19,15 @@
 import Cocoa
 import CDKSwiftOracc
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-    lazy var cuneifier: Cuneifier = {
-        let ogslPath = Bundle.main.path(forResource: "ogsl", ofType: "json")!
-        let ogslData = try! Data(contentsOf: URL(fileURLWithPath: ogslPath))
-        return try! Cuneifier(json: ogslData)
-    }()
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+extension NSViewController {
+    var document: Document {
+        let document = view.window?.windowController?.document as? Document
+        assert(document != nil, "Unable to find document for viewcontroller")
+        return document!
     }
     
-
-
-
+    var cuneifier: Cuneifier {
+        let delegate = NSApplication.shared.delegate! as! AppDelegate
+        return delegate.cuneifier
+    }
 }
-

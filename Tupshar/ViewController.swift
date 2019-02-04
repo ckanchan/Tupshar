@@ -23,6 +23,9 @@ class ViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
     let defaultFormatting = NSFont.systemFont(ofSize: NSFont.systemFontSize).makeDefaultPreferences()
     let cuneiformNA = NSFont.init(name: "CuneiformNAOutline Medium", size: NSFont.systemFontSize)
     
+    @IBOutlet weak var textSelect: NSSegmentedControl!
+    @IBOutlet var ocdlView: OCDLView!
+
     @IBAction func changeText(_ sender: Any) {
         refreshView()
     }
@@ -71,17 +74,12 @@ class ViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
         
         let attributes = str.attributes(at: 0, effectiveRange: nil)
         guard let reference = attributes[.reference] as? String else {return}
-        if let nodeIdx = document.nodes.index(where: {$0.lemmaReference == reference}) {
+        let nodeReference = document.textID.description + "." + reference
+        if let nodeIdx = document.nodes.index(where: {$0.reference == nodeReference}) {
             document.selectedNode = nodeIdx
         }
-
+        
     }
-    
-    
-    
-    @IBOutlet weak var textSelect: NSSegmentedControl!
-    @IBOutlet var ocdlView: OCDLView!
-
     
     override func viewWillAppear() {
         super.viewWillAppear()
@@ -92,7 +90,7 @@ class ViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
 
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
             refreshView()
         }
     }
@@ -103,7 +101,23 @@ class ViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
                 print("error")
                 return
             }
-            document.nodes.remove(at: nodeIdx)
+            
+            // If the deleted node is in the middle of text, then all node references following the deleted node need to be updated with new index numbers
+            if nodeIdx < document.nodes.count - 1 {
+                let pre = Array(document.nodes.prefix(upTo: nodeIdx))
+                let post = Array(document.nodes.suffix(from: nodeIdx).dropFirst())
+                let corrected = post.compactMap { node -> OraccCDLNode? in
+                    guard let (normalisation, transliteration, translation, documentID, position) = OraccCDLNode.extractLemmaData(from: node) else {return nil}
+                    let newPosition = position - 1
+                    let newNode = OraccCDLNode(normalisation: normalisation, transliteration: transliteration, translation: translation, cuneifier: cuneifier.cuneifySyllable, textID: documentID, line: 0, position: newPosition)
+                    return newNode
+                }
+                
+                let newNodes = pre + corrected
+                document.nodes = newNodes
+            } else {
+                document.nodes.remove(at: nodeIdx)
+            }
             document.selectedNode = nil
             refreshView()
         }

@@ -26,6 +26,7 @@ enum LoadError: Error {
 struct TupsharWrapper: Codable {
     var text: OraccTextEdition
     var translation: String
+    var id: TextID
 }
 
 struct ExportedDocument: Codable {
@@ -39,24 +40,28 @@ struct ExportedDocument: Codable {
 class Document: NSDocument {
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
+    var textID: TextID
     
     var text: OraccTextEdition
     var translation: String
     var nodes: [OraccCDLNode] = [] {
         didSet {
-            self.text = OraccTextEdition.createNewText(nodes: nodes)
+            self.text = OraccTextEdition(withCDL: nodes, textID: textID)
             self.ocdlDelegate?.refreshView()
         }
     }
     
     var selectedNode: Int?
+    
     weak var ocdlDelegate: OCDLViewDelegate?
     
     
     override init() {
-        self.text = OraccTextEdition.createNewText()
+        let uuid = UUID().uuidString
+        let textIDStr = "U" + uuid
+        self.textID = TextID.init(stringLiteral: textIDStr)
+        self.text = OraccTextEdition.init(withCDL: [], textID: self.textID)
         self.translation = ""
-        
         encoder.outputFormatting = .prettyPrinted
         super.init()
     }
@@ -73,7 +78,7 @@ class Document: NSDocument {
     }
 
     override func data(ofType typeName: String) throws -> Data {
-        let wrapper = TupsharWrapper(text: self.text, translation: self.translation)
+        let wrapper = TupsharWrapper(text: self.text, translation: self.translation, id: self.textID)
         return try encoder.encode(wrapper)
     }
 
@@ -82,6 +87,7 @@ class Document: NSDocument {
             text = decoded.text
             translation = decoded.translation
             nodes = decoded.text.cdl
+            textID = decoded.id
         } else {
             throw LoadError.BadData
         }

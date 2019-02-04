@@ -11,11 +11,10 @@
 		5403E9512068D21100EF18CA /* OCDLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5403E9502068D21100EF18CA /* OCDLView.swift */; };
 		5403E9562068E34200EF18CA /* CuneiformNA.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5403E9542068E30A00EF18CA /* CuneiformNA.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD380206A0C4C009E2834 /* EditorViewController.swift */; };
-		540DD383206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */; };
 		542D7AC021A0899B00705D3B /* ogsl.json in Resources */ = {isa = PBXBuildFile; fileRef = 542D7ABF21A0899B00705D3B /* ogsl.json */; };
-		542D7AC221A08F3C00705D3B /* String+CuneifyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542D7AC121A08F3C00705D3B /* String+CuneifyExtensions.swift */; };
-		546D9BF52068283900E0F156 /* Cuneify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546D9BF42068283900E0F156 /* Cuneify.swift */; };
+		546404412208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546404402208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift */; };
 		54AA082821A093D3002B43DF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 54AA082721A093D3002B43DF /* Credits.rtf */; };
+		54CB5D7A2206147500CCCE0F /* NSViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CB5D792206147500CCCE0F /* NSViewControllerExtensions.swift */; };
 		54D81F582068F165002B4C5A /* docicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D81F512068EF62002B4C5A /* docicon.png */; };
 		54F54EBF20681AE000454079 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EBE20681AE000454079 /* AppDelegate.swift */; };
 		54F54EC120681AE000454079 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EC020681AE000454079 /* ViewController.swift */; };
@@ -51,11 +50,10 @@
 		5403E9502068D21100EF18CA /* OCDLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCDLView.swift; sourceTree = "<group>"; };
 		5403E9542068E30A00EF18CA /* CuneiformNA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CuneiformNA.ttf; sourceTree = "<group>"; };
 		540DD380206A0C4C009E2834 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
-		540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OraccCDLNodeEditorExtensions.swift; sourceTree = "<group>"; };
 		542D7ABF21A0899B00705D3B /* ogsl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ogsl.json; sourceTree = "<group>"; };
-		542D7AC121A08F3C00705D3B /* String+CuneifyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CuneifyExtensions.swift"; sourceTree = "<group>"; };
-		546D9BF42068283900E0F156 /* Cuneify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cuneify.swift; sourceTree = "<group>"; };
+		546404402208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OraccCDLNode+ExtractLemma.swift"; sourceTree = "<group>"; };
 		54AA082721A093D3002B43DF /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		54CB5D792206147500CCCE0F /* NSViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewControllerExtensions.swift; sourceTree = "<group>"; };
 		54D81F512068EF62002B4C5A /* docicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = docicon.png; sourceTree = "<group>"; };
 		54F54EBB20681AE000454079 /* Tupshar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tupshar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F54EBE20681AE000454079 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +83,7 @@
 		54D81F552068F0DF002B4C5A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5403E9542068E30A00EF18CA /* CuneiformNA.ttf */,
 				54D81F512068EF62002B4C5A /* docicon.png */,
 			);
 			path = Resources;
@@ -112,13 +111,11 @@
 		54F54EBD20681AE000454079 /* Tupshar */ = {
 			isa = PBXGroup;
 			children = (
-				5403E9542068E30A00EF18CA /* CuneiformNA.ttf */,
-				546D9BF42068283900E0F156 /* Cuneify.swift */,
-				542D7AC121A08F3C00705D3B /* String+CuneifyExtensions.swift */,
 				54F54EBE20681AE000454079 /* AppDelegate.swift */,
+				546404402208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift */,
 				54F54EC020681AE000454079 /* ViewController.swift */,
-				540DD382206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift */,
 				540DD380206A0C4C009E2834 /* EditorViewController.swift */,
+				54CB5D792206147500CCCE0F /* NSViewControllerExtensions.swift */,
 				5403E9502068D21100EF18CA /* OCDLView.swift */,
 				54F54EC220681AE000454079 /* Document.swift */,
 				54F54EC420681AE000454079 /* Assets.xcassets */,
@@ -187,8 +184,11 @@
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -234,7 +234,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Tupshar/Pods-Tupshar-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Tupshar/Pods-Tupshar-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CDKSwiftOracc/CDKSwiftOracc.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -243,7 +243,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tupshar/Pods-Tupshar-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tupshar/Pods-Tupshar-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BB597CDD042E994CAF7D3178 /* [CP] Check Pods Manifest.lock */ = {
@@ -271,14 +271,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54CB5D7A2206147500CCCE0F /* NSViewControllerExtensions.swift in Sources */,
 				54F54EC120681AE000454079 /* ViewController.swift in Sources */,
 				540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */,
 				54F54EBF20681AE000454079 /* AppDelegate.swift in Sources */,
-				540DD383206A0DC4009E2834 /* OraccCDLNodeEditorExtensions.swift in Sources */,
+				546404412208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift in Sources */,
 				54F54EC320681AE000454079 /* Document.swift in Sources */,
 				5403E9512068D21100EF18CA /* OCDLView.swift in Sources */,
-				542D7AC221A08F3C00705D3B /* String+CuneifyExtensions.swift in Sources */,
-				546D9BF52068283900E0F156 /* Cuneify.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,13 +410,17 @@
 			baseConfigurationReference = 901C19168E8AE9287D47F9D3 /* Pods-Tupshar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Tupshar/Tupshar.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = E5EXHV7YGE;
+				DEVELOPMENT_TEAM = 7C57J6H3NZ;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Tupshar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ckprivate.2018.Tupshar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -427,13 +430,17 @@
 			baseConfigurationReference = C8B0BBE13B96977857F8CBB6 /* Pods-Tupshar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Tupshar/Tupshar.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = E5EXHV7YGE;
+				DEVELOPMENT_TEAM = 7C57J6H3NZ;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Tupshar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ckprivate.2018.Tupshar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;

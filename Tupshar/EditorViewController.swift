@@ -19,20 +19,6 @@
 import Cocoa
 import CDKSwiftOracc
 
-extension NSViewController {
-    var document: Document {
-        let document = view.window?.windowController?.document as? Document
-        assert(document != nil, "Unable to find document for viewcontroller")
-        return document!
-    }
-    
-    var cuneifier: LocalCuneifier {
-        let delegate = NSApplication.shared.delegate! as! AppDelegate
-        return delegate.cuneifier
-    }
-}
-
-
 class EditorViewController: NSViewController, NSTextViewDelegate {
     
     @IBOutlet weak var normalBox: NSTextField!
@@ -50,7 +36,7 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
         if normalBox.stringValue.isEmpty || translitBox.stringValue.isEmpty || translateBox.stringValue.isEmpty {
             return
         } else {
-            let (_, lemma) = OraccCDLNode.makeLemma(normalisation: normalBox.stringValue, transliteration: translitBox.stringValue, translation: translateBox.stringValue, cuneifier: cuneifier.cuneifySyllable)
+            let lemma = OraccCDLNode(normalisation: normalBox.stringValue, transliteration: translitBox.stringValue, translation: translateBox.stringValue, cuneifier: cuneifier.cuneifySyllable, textID: document.textID, line: 0, position: document.nodes.count)
             
             if let index = document.selectedNode {
                 document.nodes.insert(lemma, at: index)

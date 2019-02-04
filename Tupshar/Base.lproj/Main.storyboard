@@ -111,13 +111,13 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
-                                        <menuItem title="Page Setup…" keyEquivalent="P" id="qIS-W8-SiK">
+                                        <menuItem title="Page Setup…" hidden="YES" enabled="NO" keyEquivalent="P" id="qIS-W8-SiK">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
                                                 <action selector="runPageLayout:" target="Ady-hI-5gd" id="Din-rz-gC5"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Print…" keyEquivalent="p" id="aTl-1u-JFS">
+                                        <menuItem title="Print…" hidden="YES" enabled="NO" keyEquivalent="p" id="aTl-1u-JFS">
                                             <connections>
                                                 <action selector="print:" target="Ady-hI-5gd" id="qaZ-4w-aoO"/>
                                             </connections>
@@ -699,13 +699,11 @@
                         <value key="minSize" type="size" width="480" height="640"/>
                         <toolbar key="toolbar" implicitIdentifier="AB507FD7-E67B-4D39-8BAC-97369F37FC23" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="small" id="EXh-5u-tMl">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="gzZ-AY-ce6"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="0QQ-IS-oOP"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="aU3-C0-hd9"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="aU3-C0-hd9"/>
-                                <toolbarItem reference="gzZ-AY-ce6"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
