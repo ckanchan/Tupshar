@@ -99,11 +99,24 @@
                                                 <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="mDf-zr-I0C"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Export" id="uQM-O1-csl">
+                                        <menuItem title="Export" id="usW-ug-bky">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="export:" target="Ady-hI-5gd" id="cj2-38-rXh"/>
-                                            </connections>
+                                            <menu key="submenu" title="Export" id="YIT-KT-Bpk">
+                                                <items>
+                                                    <menuItem title="As Word Document" id="jCz-xN-odD">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="exportAsDoc:" target="Ady-hI-5gd" id="Dgg-S7-0We"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="As Text" id="uQM-O1-csl">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="exportAsText:" target="Ady-hI-5gd" id="QPm-Nq-GGe"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
                                         </menuItem>
                                         <menuItem title="Revert to Saved" keyEquivalent="r" id="KaW-ft-85H">
                                             <connections>

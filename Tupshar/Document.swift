@@ -19,8 +19,10 @@
 import Cocoa
 import CDKSwiftOracc
 
-enum LoadError: Error {
+enum DocumentError: Error {
     case BadData
+    case InvalidExportFormat
+    case FailedToExportData
 }
 
 struct TupsharWrapper: Codable {
@@ -89,35 +91,68 @@ class Document: NSDocument {
             nodes = decoded.text.cdl
             textID = decoded.id
         } else {
-            throw LoadError.BadData
+            throw DocumentError.BadData
         }
     }
 
     
-    @IBAction func export(_ sender: Any){
+    @IBAction func exportAsText(_ sender: Any){
+        guard let exportedData = self.convertToText() else {return}
         guard let window = self.windowControllers.first?.window else {return}
-//        let cuneiform = text.cuneiform
-//        let transliteration  = text.transliteration
-//        let normalisation = text.transcription
-//        let translation = self.translation
-//
-//        let exported = ExportedDocument(cuneiform: cuneiform, transliteration: transliteration, normalisation: normalisation, translation: translation)
-//        guard let exportedData = try? encoder.encode(exported) else {return}
-        
-        guard let exportedData = convertToDoc() else {return}
         let panel = NSSavePanel()
-        panel.allowedFileTypes = ["doc"]
+        let title = Array(window.title.split(separator: ".").dropLast()) // Get everything but the document extension
+            .map({String($0)}) // Convert elements to string
+            .joined() // Merge remaining elements
+        panel.nameFieldStringValue = String(title)
+        panel.allowedFileTypes = ["txt"]
+        panel.message = "Export as Text File"
+        panel.prompt = "Export"
+        
         panel.beginSheetModal(for: window) {modalResponse in
             if modalResponse == NSApplication.ModalResponse.OK {
-                guard let url = panel.url else {return}
                 do {
+                    guard let url = panel.url else { throw DocumentError.FailedToExportData }
                     try exportedData.write(to: url)
                 } catch {
                     Swift.print(error.localizedDescription)
                 }
             }
-            
         }
+    }
+    
+    @IBAction func exportAsDoc(_ sender: Any) {
+        guard let exportedData = self.convertToDoc() else {return}
+        guard let window = self.windowControllers.first?.window else {return}
+        let panel = NSSavePanel()
+        let title = Array(window.title.split(separator: ".").dropLast()) // Get everything but the document extension
+            .map({String($0)}) // Convert elements to string
+            .joined() // Merge remaining elements
+        panel.nameFieldStringValue = title
+        panel.allowedFileTypes = ["doc"]
+        panel.message = "Export as Microsoft Word Document"
+        panel.prompt = "Export"
+        
+        panel.beginSheetModal(for: window) {modalResponse in
+            if modalResponse == NSApplication.ModalResponse.OK {
+                do {
+                    guard let url = panel.url else { throw DocumentError.FailedToExportData }
+                    try exportedData.write(to: url)
+                } catch {
+                    Swift.print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func convertToText() -> Data? {
+        let cuneiform = text.cuneiform
+        let transliteration  = text.transliteration
+        let normalisation = text.transcription
+        let translation = self.translation
+        
+        let exported = ExportedDocument(cuneiform: cuneiform, transliteration: transliteration, normalisation: normalisation, translation: translation)
+        guard let exportedData = try? encoder.encode(exported) else {return nil}
+        return exportedData
     }
     
     func convertToDoc() -> Data? {
@@ -130,7 +165,7 @@ class Document: NSDocument {
         let transliteration = text.transliterated().render(withPreferences: exportFormatting)
         let normalisation = text.normalised().render(withPreferences: exportFormatting)
         let attributedTranslation = NSAttributedString(string: translation)
-        let lineBreak = NSAttributedString(string: "\n")
+        let lineBreak = NSAttributedString(string: "\n\n")
         
         let strings = [cuneiform, lineBreak, transliteration, lineBreak, normalisation, lineBreak, attributedTranslation]
         let docstring = NSMutableAttributedString()
