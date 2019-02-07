@@ -1,5 +1,5 @@
 //
-//  NSViewControllerExtensions.swift
+//  TupsharFile.swift
 //  Tupshar: novelty cuneiform text editor
 //  Copyright (C) 2018 Chaitanya Kanchan
 //
@@ -16,18 +16,11 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import Cocoa
+import Foundation
 import CDKSwiftOracc
 
-extension NSViewController {
-    var document: Document {
-        let document = view.window?.windowController?.document as? Document ?? self.parent?.view.window?.windowController?.document as? Document
-        assert(document != nil, "Unable to find document for viewcontroller")
-        return document!
-    }
-    
-    var cuneifier: Cuneifier {
-        let delegate = NSApplication.shared.delegate! as! AppDelegate
-        return delegate.cuneifier
-    }
+struct TupsharFile: Codable {
+    var text: OraccTextEdition
+    var metadata: OraccCatalogEntry
+    var translation: String
 }

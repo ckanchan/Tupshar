@@ -19,7 +19,7 @@
 import Cocoa
 import CDKSwiftOracc
 
-class ViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
+class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
     let defaultFormatting = NSFont.systemFont(ofSize: NSFont.systemFontSize).makeDefaultPreferences()
     let cuneiformNA = NSFont.init(name: "CuneiformNAOutline Medium", size: NSFont.systemFontSize)
     

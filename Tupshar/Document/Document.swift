@@ -19,36 +19,18 @@
 import Cocoa
 import CDKSwiftOracc
 
-enum DocumentError: Error {
-    case BadData
-    case InvalidExportFormat
-    case FailedToExportData
-}
-
-struct TupsharWrapper: Codable {
-    var text: OraccTextEdition
-    var translation: String
-    var id: TextID
-}
-
-struct ExportedDocument: Codable {
-    let cuneiform: String
-    let transliteration: String
-    let normalisation: String
-    let translation: String
-}
-
-
 class Document: NSDocument {
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
-    var textID: TextID
     
+    var textID: TextID
+    var metadata: OraccCatalogEntry
     var text: OraccTextEdition
     var translation: String
+    
     var nodes: [OraccCDLNode] = [] {
         didSet {
-            self.text = OraccTextEdition(withCDL: nodes, textID: textID)
+            self.text = OraccTextEdition(type: "modern", project: metadata.project, cdl: nodes, textID: textID)
             self.ocdlDelegate?.refreshView()
         }
     }
@@ -62,8 +44,20 @@ class Document: NSDocument {
         let uuid = UUID().uuidString
         let textIDStr = "U" + uuid
         self.textID = TextID.init(stringLiteral: textIDStr)
-        self.text = OraccTextEdition.init(withCDL: [], textID: self.textID)
+        self.metadata = OraccCatalogEntry(id: self.textID,
+                                          displayName: "New Document",
+                                          ancientAuthor: nil,
+                                          title: "New Document",
+                                          project: "Unassigned")
+
+        self.text = OraccTextEdition(type: "modern",
+                                     project: self.metadata.project,
+                                     cdl: [],
+                                     textID: self.textID)
+        
         self.translation = ""
+
+        
         encoder.outputFormatting = .prettyPrinted
         super.init()
     }
@@ -80,16 +74,19 @@ class Document: NSDocument {
     }
 
     override func data(ofType typeName: String) throws -> Data {
-        let wrapper = TupsharWrapper(text: self.text, translation: self.translation, id: self.textID)
+        let wrapper = TupsharFile(text: self.text,
+                                     metadata: self.metadata,
+                                     translation: self.translation)
         return try encoder.encode(wrapper)
     }
 
     override func read(from data: Data, ofType typeName: String) throws {
-        if let decoded = try? decoder.decode(TupsharWrapper.self, from: data) {
+        if let decoded = try? decoder.decode(TupsharFile.self, from: data) {
             text = decoded.text
             translation = decoded.translation
             nodes = decoded.text.cdl
-            textID = decoded.id
+            textID = decoded.metadata.id
+            metadata = decoded.metadata
         } else {
             throw DocumentError.BadData
         }
@@ -100,9 +97,7 @@ class Document: NSDocument {
         guard let exportedData = self.convertToText() else {return}
         guard let window = self.windowControllers.first?.window else {return}
         let panel = NSSavePanel()
-        let title = Array(window.title.split(separator: ".").dropLast()) // Get everything but the document extension
-            .map({String($0)}) // Convert elements to string
-            .joined() // Merge remaining elements
+        let title = metadata.title
         panel.nameFieldStringValue = String(title)
         panel.allowedFileTypes = ["txt"]
         panel.message = "Export as Text File"
@@ -124,9 +119,7 @@ class Document: NSDocument {
         guard let exportedData = self.convertToDoc() else {return}
         guard let window = self.windowControllers.first?.window else {return}
         let panel = NSSavePanel()
-        let title = Array(window.title.split(separator: ".").dropLast()) // Get everything but the document extension
-            .map({String($0)}) // Convert elements to string
-            .joined() // Merge remaining elements
+        let title = metadata.title
         panel.nameFieldStringValue = title
         panel.allowedFileTypes = ["doc"]
         panel.message = "Export as Microsoft Word Document"
@@ -150,7 +143,11 @@ class Document: NSDocument {
         let normalisation = text.transcription
         let translation = self.translation
         
-        let exported = ExportedDocument(cuneiform: cuneiform, transliteration: transliteration, normalisation: normalisation, translation: translation)
+        let exported = ExportedText(cuneiform: cuneiform,
+                                    transliteration: transliteration,
+                                    normalisation: normalisation,
+                                    translation: translation)
+        
         guard let exportedData = try? encoder.encode(exported) else {return nil}
         return exportedData
     }
@@ -171,10 +168,15 @@ class Document: NSDocument {
         let docstring = NSMutableAttributedString()
         strings.forEach{docstring.append($0)}
         
-        let docAttributes = [NSAttributedString.DocumentAttributeKey.documentType: NSAttributedString.DocumentType.docFormat]
+        let docAttributes: [NSAttributedString.DocumentAttributeKey: Any] = [
+            .documentType: NSAttributedString.DocumentType.docFormat,
+            .title: metadata.title,
+            .author: metadata.ancientAuthor ?? ""
+        ]
+        
+        
         let data = docstring.docFormat(from: NSMakeRange(0, docstring.length), documentAttributes: docAttributes)
         
         return data
     }
 }
-
