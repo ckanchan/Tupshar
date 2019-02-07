@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.ckprivate.tupshar-doc</string>
+				<string>me.chaidk.tupshar-doc</string>
 			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
@@ -74,7 +74,7 @@
 			<key>UTTypeIconFile</key>
 			<string>docicon</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.ckprivate.tupshar-doc</string>
+			<string>me.chaidk.tupshar-doc</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
