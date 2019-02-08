@@ -36,7 +36,13 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
         if normalBox.stringValue.isEmpty || translitBox.stringValue.isEmpty || translateBox.stringValue.isEmpty {
             return
         } else {
-            let lemma = OraccCDLNode(normalisation: normalBox.stringValue, transliteration: translitBox.stringValue, translation: translateBox.stringValue, cuneifier: cuneifier.cuneifySyllable, textID: document.textID, line: 0, position: document.nodes.count)
+            let lemma = OraccCDLNode(normalisation: normalBox.stringValue.replaceATF(),
+                                     transliteration: translitBox.stringValue.replaceATF(),
+                                     translation: translateBox.stringValue.replaceATF(),
+                                     cuneifier: cuneifier.cuneifySyllable,
+                                     textID: document.textID,
+                                     line: 0,
+                                     position: document.nodes.count)
             
             if let index = document.selectedNode {
                 document.nodes.insert(lemma, at: index)

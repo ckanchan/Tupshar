@@ -18,6 +18,7 @@
 		5472DDB0220C1FC700C7333F /* DocumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5472DDAF220C1FC700C7333F /* DocumentError.swift */; };
 		549F1DFA220A174900B93E02 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549F1DF9220A174900B93E02 /* InfoViewController.swift */; };
 		54AA082821A093D3002B43DF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 54AA082721A093D3002B43DF /* Credits.rtf */; };
+		54BF1CF2220DCC1C004D890C /* String+ReplaceATF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF1CF1220DCC1C004D890C /* String+ReplaceATF.swift */; };
 		54CB5D7A2206147500CCCE0F /* NSViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CB5D792206147500CCCE0F /* NSViewControllerExtensions.swift */; };
 		54D81F582068F165002B4C5A /* docicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D81F512068EF62002B4C5A /* docicon.png */; };
 		54F54EBF20681AE000454079 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EBE20681AE000454079 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		5472DDAF220C1FC700C7333F /* DocumentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentError.swift; sourceTree = "<group>"; };
 		549F1DF9220A174900B93E02 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		54AA082721A093D3002B43DF /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		54BF1CF1220DCC1C004D890C /* String+ReplaceATF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ReplaceATF.swift"; sourceTree = "<group>"; };
 		54CB5D792206147500CCCE0F /* NSViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewControllerExtensions.swift; sourceTree = "<group>"; };
 		54D81F512068EF62002B4C5A /* docicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = docicon.png; sourceTree = "<group>"; };
 		54F54EBB20681AE000454079 /* Tupshar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tupshar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +135,7 @@
 			children = (
 				5472DDAA220C1CDB00C7333F /* Document */,
 				54F54EBE20681AE000454079 /* AppDelegate.swift */,
+				54BF1CF1220DCC1C004D890C /* String+ReplaceATF.swift */,
 				546404402208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift */,
 				54F54EC020681AE000454079 /* TextViewController.swift */,
 				540DD380206A0C4C009E2834 /* EditorViewController.swift */,
@@ -294,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54BF1CF2220DCC1C004D890C /* String+ReplaceATF.swift in Sources */,
 				54CB5D7A2206147500CCCE0F /* NSViewControllerExtensions.swift in Sources */,
 				5472DDAC220C1CFC00C7333F /* ExportedText.swift in Sources */,
 				54F54EC120681AE000454079 /* TextViewController.swift in Sources */,
