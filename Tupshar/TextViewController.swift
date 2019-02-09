@@ -68,16 +68,30 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
         guard textBox == self.ocdlView else {return}
         
         let range = textBox.selectedRange()
-        if range.location == NSNotFound {return}
+        if range.location == NSNotFound {
+            document.selectedNode = nil
+            return
+        }
         
-        guard let str = textBox.attributedSubstring(forProposedRange: range, actualRange: nil) else {return}
+        guard let str = textBox.attributedSubstring(forProposedRange: range, actualRange: nil) else {
+            document.selectedNode = nil
+            return
+        }
         
         let attributes = str.attributes(at: 0, effectiveRange: nil)
-        guard let reference = attributes[.reference] as? String else {return}
-        let nodeReference = document.textID.description + "." + reference
-        if let nodeIdx = document.nodes.index(where: {$0.reference == nodeReference}) {
-            document.selectedNode = nodeIdx
+        guard let reference = attributes[.reference] as? String else {
+            document.selectedNode = nil
+            return
         }
+        let pathComponents = reference.split(separator: ".")
+        let path = pathComponents.compactMap{Int($0)}
+        guard path.count == 2 else {
+            document.selectedNode = nil
+            return
+        }
+        
+        document.currentLine = path[0]
+        document.selectedNode = path[1]
         
     }
     
@@ -102,22 +116,23 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
                 return
             }
             
+            guard var line = document.nodes[document.currentLine] else {return}
+            
             // If the deleted node is in the middle of text, then all node references following the deleted node need to be updated with new index numbers
-            if nodeIdx < document.nodes.count - 1 {
-                let pre = Array(document.nodes.prefix(upTo: nodeIdx))
-                let post = Array(document.nodes.suffix(from: nodeIdx).dropFirst())
+            if nodeIdx < line.count - 1 {
+                let pre = Array(line.prefix(upTo: nodeIdx))
+                let post = Array(line.suffix(from: nodeIdx).dropFirst())
                 let corrected = post.compactMap { node -> OraccCDLNode? in
                     guard let (normalisation, transliteration, translation, documentID, position) = OraccCDLNode.extractLemmaData(from: node) else {return nil}
                     let newPosition = position - 1
                     let newNode = OraccCDLNode(normalisation: normalisation, transliteration: transliteration, translation: translation, cuneifier: cuneifier.cuneifySyllable, textID: documentID, line: 0, position: newPosition)
                     return newNode
                 }
-                
-                let newNodes = pre + corrected
-                document.nodes = newNodes
+                line = pre + corrected
             } else {
-                document.nodes.remove(at: nodeIdx)
+                line.remove(at: nodeIdx)
             }
+            document.nodes[document.currentLine] = line
             document.selectedNode = nil
             refreshView()
         }

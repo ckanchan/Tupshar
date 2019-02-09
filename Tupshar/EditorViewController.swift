@@ -33,25 +33,23 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
 
     
     @IBAction func insertNode(_ sender: Any) {
-        if normalBox.stringValue.isEmpty || translitBox.stringValue.isEmpty || translateBox.stringValue.isEmpty {
-            return
-        } else {
+        switch (normalBox.stringValue.isEmpty, translitBox.stringValue.isEmpty, translateBox.stringValue.isEmpty) {
+        case (true, true, true) :
+            document.currentLine += 1
+        case (false, false, false) :
             let lemma = OraccCDLNode(normalisation: normalBox.stringValue.replaceATF(),
                                      transliteration: translitBox.stringValue.replaceATF(),
                                      translation: translateBox.stringValue.replaceATF(),
                                      cuneifier: cuneifier.cuneifySyllable,
                                      textID: document.textID,
-                                     line: 0,
-                                     position: document.nodes.count)
+                                     line: document.currentLine,
+                                     position: document.nodes[document.currentLine]?.count ?? 0)
             
-            if let index = document.selectedNode {
-                document.nodes.insert(lemma, at: index)
-                document.selectedNode = nil
-            } else {
-                document.nodes.append(lemma)
-            }
-            
+            document.insertNode(lemma)
             view.window?.isDocumentEdited = true
+            
+        default:
+            break
         }
     }
     

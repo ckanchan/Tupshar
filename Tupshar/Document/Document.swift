@@ -28,16 +28,36 @@ class Document: NSDocument {
     var text: OraccTextEdition
     var translation: String
     
-    var nodes: [OraccCDLNode] = [] {
+    var nodes: [Int: [OraccCDLNode]] = [:] {
         didSet {
-            self.text = OraccTextEdition(type: "modern", project: metadata.project, cdl: nodes, textID: textID)
+            self.text = OraccTextEdition(type: "modern", project: metadata.project, cdl: Array(nodes.values.joined()), textID: textID)
             self.ocdlDelegate?.refreshView()
         }
     }
     
-    var selectedNode: Int?
+    var selectedNode: Int? {
+        didSet {
+            if selectedNode == nil {
+                currentLine = nodes.count - 1
+            }
+        }
+    }
+    var currentLine = 0
     
     weak var ocdlDelegate: OCDLViewDelegate?
+    
+    func insertNode(_ node: OraccCDLNode) {
+        switch node {
+        case .l(let lemma):
+            let lineNumber = Int(lemma.reference.path[0]) ?? currentLine
+            var line = nodes[lineNumber] ?? [OraccCDLNode(lineBreakLabel: "\(lineNumber)")]
+            line.append(node)
+            nodes[lineNumber] = line
+            
+        default:
+            return
+        }
+    }
     
     
     override init() {
@@ -84,9 +104,20 @@ class Document: NSDocument {
         if let decoded = try? decoder.decode(TupsharFile.self, from: data) {
             text = decoded.text
             translation = decoded.translation
-            nodes = decoded.text.cdl
             textID = decoded.metadata.id
             metadata = decoded.metadata
+            
+            let lemmas = decoded.text.cdl.compactMap { node -> OraccCDLNode.Lemma? in
+                if case let OraccCDLNode.l(lemma) = node {
+                    return lemma
+                } else {
+                    return nil
+                }
+            }
+            
+            let lines = Dictionary(grouping: lemmas, by: {Int($0.reference.path[0]) ?? 0})
+            let nodeLines = lines.mapValues{$0.map({OraccCDLNode.l($0)})}
+            nodes = nodeLines
         } else {
             throw DocumentError.BadData
         }
