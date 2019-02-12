@@ -36,6 +36,7 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
         switch (normalBox.stringValue.isEmpty, translitBox.stringValue.isEmpty, translateBox.stringValue.isEmpty) {
         case (true, true, true) :
             document.currentLine += 1
+            view.window?.isDocumentEdited = true
         case (false, false, false) :
             let lemma = OraccCDLNode(normalisation: normalBox.stringValue.replaceATF(),
                                      transliteration: translitBox.stringValue.replaceATF(),
@@ -43,7 +44,7 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
                                      cuneifier: cuneifier.cuneifySyllable,
                                      textID: document.textID,
                                      line: document.currentLine,
-                                     position: document.nodes[document.currentLine]?.count ?? 0)
+                                     position: document.nodes[document.currentLine]?.count ?? 1)
             
             document.insertNode(lemma)
             view.window?.isDocumentEdited = true

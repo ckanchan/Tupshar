@@ -1,5 +1,5 @@
 PODS:
-  - CDKSwiftOracc (0.7.6)
+  - CDKSwiftOracc (0.7.7)
 
 DEPENDENCIES:
   - CDKSwiftOracc
@@ -9,7 +9,7 @@ SPEC REPOS:
     - CDKSwiftOracc
 
 SPEC CHECKSUMS:
-  CDKSwiftOracc: 0f32348abd02c02ad8452fb30dd4bec2ebbd89ff
+  CDKSwiftOracc: d89d02817fdf3c5756397014097b2f936ad00b0e
 
 PODFILE CHECKSUM: 66f4da580a24c23bcf0244360d2c4a8fd72c8d27
 

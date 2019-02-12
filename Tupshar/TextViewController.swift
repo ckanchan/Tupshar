@@ -29,7 +29,7 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
     @IBAction func changeText(_ sender: Any) {
         refreshView()
     }
-    
+
     func refreshView() {
         switch self.textSelect.selectedSegment {
         case 0:
@@ -110,32 +110,7 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
     }
     
     func deleteNode() {
-        if let nodeIdx = document.selectedNode {
-            guard !document.nodes.isEmpty else {
-                print("error")
-                return
-            }
-            
-            guard var line = document.nodes[document.currentLine] else {return}
-            
-            // If the deleted node is in the middle of text, then all node references following the deleted node need to be updated with new index numbers
-            if nodeIdx < line.count - 1 {
-                let pre = Array(line.prefix(upTo: nodeIdx))
-                let post = Array(line.suffix(from: nodeIdx).dropFirst())
-                let corrected = post.compactMap { node -> OraccCDLNode? in
-                    guard let (normalisation, transliteration, translation, documentID, position) = OraccCDLNode.extractLemmaData(from: node) else {return nil}
-                    let newPosition = position - 1
-                    let newNode = OraccCDLNode(normalisation: normalisation, transliteration: transliteration, translation: translation, cuneifier: cuneifier.cuneifySyllable, textID: documentID, line: 0, position: newPosition)
-                    return newNode
-                }
-                line = pre + corrected
-            } else {
-                line.remove(at: nodeIdx)
-            }
-            document.nodes[document.currentLine] = line
-            document.selectedNode = nil
-            refreshView()
-        }
+       document.deleteNode()
     }
     
 }

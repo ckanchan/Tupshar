@@ -648,6 +648,13 @@
                                                 <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="dU3-MA-1Rq"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="tgc-V9-JuS"/>
+                                        <menuItem title="Show Node Editor" id="gy4-FN-prO">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showAdvancedNodes:" target="Ady-hI-5gd" id="LLu-m6-Gjx"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>

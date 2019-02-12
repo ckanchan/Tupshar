@@ -20,19 +20,29 @@ import Foundation
 import CDKSwiftOracc
 
 extension OraccCDLNode {
-    static func extractLemmaData(from node: OraccCDLNode) -> (normalisation: String, transliteration: String, translation: String, textID: TextID, position: Int)? {
+    static func extractLemmaData(from node: OraccCDLNode) -> (normalisation: String, transliteration: String, translation: String, textID: TextID, line: Int, position: Int)? {
         guard case let OraccCDLNode.l(lemma) = node else {return nil}
         let normalisation = lemma.wordForm.form
         let transliteration = lemma.fragment
         let translation = lemma.wordForm.translation.sense ?? ""
         let textID = lemma.reference.base
-        let position = Int(lemma.reference.path.last!)!
+        let line = Int(lemma.reference.path[0])!
+        let position = Int(lemma.reference.path[1])!
         return (
             normalisation: normalisation,
             transliteration: transliteration,
             translation: translation,
             textID: textID,
+            line: line,
             position: position
         )
+    }
+    
+    func updatePosition(by: (Int) -> Int) -> OraccCDLNode {
+        guard case var OraccCDLNode.l(lemma) = self else {return self}
+        let oldPosition = Int(lemma.reference.path[1])!
+        let newPosition = by(oldPosition)
+        lemma.reference.path[1] = String(newPosition)
+        return OraccCDLNode.l(lemma)
     }
 }

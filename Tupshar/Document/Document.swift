@@ -30,21 +30,46 @@ class Document: NSDocument {
     
     var nodes: [Int: [OraccCDLNode]] = [:] {
         didSet {
-            self.text = OraccTextEdition(type: "modern", project: metadata.project, cdl: Array(nodes.values.joined()), textID: textID)
+            let cdl = nodes.flattened()
+            self.text = OraccTextEdition(type: "modern", project: metadata.project, cdl: Array(cdl), textID: textID)
             self.ocdlDelegate?.refreshView()
+            notifyDocumentChanged()
         }
     }
     
     var selectedNode: Int? {
         didSet {
             if selectedNode == nil {
-                currentLine = nodes.count - 1
+                currentLine = nodes.count
             }
         }
     }
-    var currentLine = 0
+    
+    var currentLine = 1 {
+        didSet {
+            if !nodes.keys.contains(currentLine) {
+                nodes[currentLine] = [OraccCDLNode(lineBreakLabel: "\(currentLine)")]
+            }
+        }
+    }
+    
+    var cuneifier: Cuneifier {
+        let delegate = NSApplication.shared.delegate! as! AppDelegate
+        return delegate.cuneifier
+    }
     
     weak var ocdlDelegate: OCDLViewDelegate?
+    
+    @IBAction func showAdvancedNodes(_ sender: Any) {
+        guard let (wc, _) = RawCDLViewController.New(forDocument: self, viewDelegate: ocdlDelegate) else {return}
+        wc.window?.title = metadata.title + "- Node View"
+        wc.showWindow(self)
+    }
+    
+    func notifyDocumentChanged() {
+        let notification = Notification(name: .documentChanged, object: self)
+        NotificationCenter.default.post(notification)
+    }
     
     func insertNode(_ node: OraccCDLNode) {
         switch node {
@@ -59,6 +84,73 @@ class Document: NSDocument {
         }
     }
     
+    func deleteNode(line lineNumber: Int, position: Int) {
+        guard var line = nodes[lineNumber] else {return}
+        if position < line.count - 1 {
+            let pre = Array(line.prefix(upTo: position))
+            let post = Array(line.suffix(from: position).dropFirst())
+            let corrected = post.map { node -> OraccCDLNode in
+                return node.updatePosition{ $0 - 1 }
+            }
+            line = pre + corrected
+        } else {
+            line.remove(at: position)
+        }
+        
+        nodes[lineNumber] = line
+        ocdlDelegate?.refreshView()
+        notifyDocumentChanged()
+    }
+    
+    func deleteNode() {
+        guard let nodeIdx = selectedNode,
+            !nodes.isEmpty else {return}
+        
+        deleteNode(line: currentLine, position: nodeIdx)
+        selectedNode = nil
+    }
+    
+    func updateNode(oldNode: OraccCDLNode, newNode: OraccCDLNode) {
+        guard case let OraccCDLNode.l(oldLemma) = oldNode,
+            case let OraccCDLNode.l(newLemma) = newNode else {return}
+        
+        let oldLine = Int(oldLemma.reference.path[0])!
+        let oldPosition = Int(oldLemma.reference.path[1])!
+        let newLine = Int(newLemma.reference.path[0])!
+        let newPosition = Int(newLemma.reference.path[1])!
+        
+        if (oldLine, oldPosition) == (newLine, newPosition) {
+            guard var line = nodes[oldLine] else {return}
+            line[oldPosition] = newNode
+            nodes[newLine] = line
+        } else {
+            
+            deleteNode(line: oldLine, position: oldPosition)
+            
+            var line = nodes[newLine] ?? [OraccCDLNode(lineBreakLabel: "\(newLine)")]
+            if line.count > newPosition {
+                let pre = Array(line.prefix(upTo: newPosition))
+                let post = Array(line.suffix(from: newPosition))
+                let corrected = post.map { node -> OraccCDLNode in
+                    return node.updatePosition {$0 + 1}
+                }
+                
+                let updatedLine = pre + [newNode] + corrected
+                line = updatedLine
+            } else {
+                
+                guard case var OraccCDLNode.l(newLemma) = newNode else {return}
+                newLemma.reference.path[1] = String(line.count)
+                let correctedNode = OraccCDLNode.l(newLemma)
+                line.append(correctedNode)
+            }
+            
+            nodes[newLine] = line
+        }
+        ocdlDelegate?.refreshView()
+        notifyDocumentChanged()
+    }
+    
     
     override init() {
         let uuid = UUID().uuidString
@@ -70,9 +162,10 @@ class Document: NSDocument {
                                           title: "New Document",
                                           project: "Unassigned")
 
+        self.nodes = [1: [OraccCDLNode(lineBreakLabel: "1")]]
         self.text = OraccTextEdition(type: "modern",
                                      project: self.metadata.project,
-                                     cdl: [],
+                                     cdl: self.nodes.flattened(),
                                      textID: self.textID)
         
         self.translation = ""
@@ -116,7 +209,12 @@ class Document: NSDocument {
             }
             
             let lines = Dictionary(grouping: lemmas, by: {Int($0.reference.path[0]) ?? 0})
-            let nodeLines = lines.mapValues{$0.map({OraccCDLNode.l($0)})}
+            var nodeLines = lines.mapValues{$0.map({OraccCDLNode.l($0)})}
+            for (lineNumber, line) in nodeLines {
+                let lineStart = OraccCDLNode(lineBreakLabel: String(lineNumber))
+                nodeLines[lineNumber] = [lineStart] + line
+            }
+            
             nodes = nodeLines
         } else {
             throw DocumentError.BadData
@@ -209,5 +307,20 @@ class Document: NSDocument {
         let data = docstring.docFormat(from: NSMakeRange(0, docstring.length), documentAttributes: docAttributes)
         
         return data
+    }
+}
+
+extension Dictionary where Key: Comparable, Value: Collection {
+    func flattened() -> Array<Value.Element> {
+        let flattened = self.sorted(by: {$0.key < $1.key})
+            .map({$0.value})
+            .joined()
+        return Array(flattened)
+    }
+}
+
+extension Notification.Name {
+    static var documentChanged: Notification.Name {
+        return Notification.Name("documentChanged")
     }
 }

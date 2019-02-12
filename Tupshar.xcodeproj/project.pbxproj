@@ -12,6 +12,8 @@
 		5403E9562068E34200EF18CA /* CuneiformNA.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5403E9542068E30A00EF18CA /* CuneiformNA.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD380206A0C4C009E2834 /* EditorViewController.swift */; };
 		542D7AC021A0899B00705D3B /* ogsl.json in Resources */ = {isa = PBXBuildFile; fileRef = 542D7ABF21A0899B00705D3B /* ogsl.json */; };
+		544D3D282211B30E0018DE52 /* Advanced.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544D3D272211B30E0018DE52 /* Advanced.storyboard */; };
+		544D3D2A2211B3C50018DE52 /* RawCDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544D3D292211B3C50018DE52 /* RawCDLViewController.swift */; };
 		546404412208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546404402208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift */; };
 		5472DDAC220C1CFC00C7333F /* ExportedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5472DDAB220C1CFC00C7333F /* ExportedText.swift */; };
 		5472DDAE220C1EAA00C7333F /* TupsharFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5472DDAD220C1EAA00C7333F /* TupsharFile.swift */; };
@@ -56,6 +58,8 @@
 		5403E9542068E30A00EF18CA /* CuneiformNA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CuneiformNA.ttf; sourceTree = "<group>"; };
 		540DD380206A0C4C009E2834 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		542D7ABF21A0899B00705D3B /* ogsl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ogsl.json; sourceTree = "<group>"; };
+		544D3D272211B30E0018DE52 /* Advanced.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Advanced.storyboard; sourceTree = "<group>"; };
+		544D3D292211B3C50018DE52 /* RawCDLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawCDLViewController.swift; sourceTree = "<group>"; };
 		546404402208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OraccCDLNode+ExtractLemma.swift"; sourceTree = "<group>"; };
 		5472DDAB220C1CFC00C7333F /* ExportedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportedText.swift; sourceTree = "<group>"; };
 		5472DDAD220C1EAA00C7333F /* TupsharFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TupsharFile.swift; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 				5403E9502068D21100EF18CA /* OCDLView.swift */,
 				54F54EC420681AE000454079 /* Assets.xcassets */,
 				54F54EC620681AE000454079 /* Main.storyboard */,
+				544D3D272211B30E0018DE52 /* Advanced.storyboard */,
+				544D3D292211B3C50018DE52 /* RawCDLViewController.swift */,
 				54F54EC920681AE000454079 /* Info.plist */,
 				54F54ECA20681AE000454079 /* Tupshar.entitlements */,
 				54AA082721A093D3002B43DF /* Credits.rtf */,
@@ -245,6 +251,7 @@
 			files = (
 				54AA082821A093D3002B43DF /* Credits.rtf in Resources */,
 				54F54EC520681AE000454079 /* Assets.xcassets in Resources */,
+				544D3D282211B30E0018DE52 /* Advanced.storyboard in Resources */,
 				54F54EC820681AE000454079 /* Main.storyboard in Resources */,
 				542D7AC021A0899B00705D3B /* ogsl.json in Resources */,
 				54D81F582068F165002B4C5A /* docicon.png in Resources */,
@@ -300,6 +307,7 @@
 				54BF1CF2220DCC1C004D890C /* String+ReplaceATF.swift in Sources */,
 				54CB5D7A2206147500CCCE0F /* NSViewControllerExtensions.swift in Sources */,
 				5472DDAC220C1CFC00C7333F /* ExportedText.swift in Sources */,
+				544D3D2A2211B3C50018DE52 /* RawCDLViewController.swift in Sources */,
 				54F54EC120681AE000454079 /* TextViewController.swift in Sources */,
 				540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */,
 				54F54EBF20681AE000454079 /* AppDelegate.swift in Sources */,
