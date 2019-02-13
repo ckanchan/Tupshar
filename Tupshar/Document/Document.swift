@@ -48,6 +48,8 @@ class Document: NSDocument {
             if case Cursor.none = selectedNode {
                 currentLine = nodes.count
             }
+            let notification = Notification(name: .nodeSelected, object: self, userInfo: nil)
+            NotificationCenter.default.post(notification)
         }
     }
     
@@ -350,5 +352,8 @@ extension Dictionary where Key: Comparable, Value: Collection {
 extension Notification.Name {
     static var documentChanged: Notification.Name {
         return Notification.Name("documentChanged")
+    }
+    static var nodeSelected: Notification.Name {
+        return Notification.Name("nodeSelected")
     }
 }

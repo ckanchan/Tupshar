@@ -28,9 +28,32 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var documentTranslationBox: NSTextView!
     
     override func viewWillAppear() {
+        NotificationCenter.default.addObserver(self, selector: #selector(displaySelectedNode), name: NSNotification.Name.nodeSelected, object: document)
         documentTranslationBox.string = document.translation
     }
+    
+    override func viewWillDisappear() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func displaySelectedNode() {
+        guard case let Document.Cursor.selection(position: currentPosition) = document.selectedNode,
+            let node = document.nodes[document.currentLine]?[currentPosition],
+            let values = OraccCDLNode.extractLemmaData(from: node) else {clearBoxes(); return}
+        
+        normalBox.stringValue = values.normalisation
+        translitBox.stringValue = values.transliteration
+        translateBox.stringValue = values.translation
+        
+        
+        
+    }
 
+    func clearBoxes() {
+        [ normalBox, translitBox, translateBox].forEach {
+            $0?.stringValue = ""
+        }
+    }
     
     @IBAction func insertNode(_ sender: Any) {
         switch (normalBox.stringValue.isEmpty, translitBox.stringValue.isEmpty, translateBox.stringValue.isEmpty) {
