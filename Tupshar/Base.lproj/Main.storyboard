@@ -744,7 +744,7 @@
                 <splitViewController id="Q3p-xE-fXa" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="hnu-0d-3JI"/>
-                        <splitViewItem id="n6E-uk-d9M"/>
+                        <splitViewItem id="Iav-1W-Abd"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="zqU-PS-ohH">
                         <rect key="frame" x="-255" y="0.0" width="829" height="600"/>
@@ -756,12 +756,12 @@
                     <connections>
                         <outlet property="splitView" destination="zqU-PS-ohH" id="xOJ-eh-alS"/>
                         <segue destination="5gI-5U-AMq" kind="relationship" relationship="splitItems" id="Cwz-w2-Hsr"/>
-                        <segue destination="XtU-4r-kb8" kind="relationship" relationship="splitItems" id="aad-3v-ThP"/>
+                        <segue destination="HFP-AW-BjN" kind="relationship" relationship="splitItems" id="Bii-X5-X8H"/>
                     </connections>
                 </splitViewController>
                 <customObject id="YQ6-QY-hTy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-400.5" y="950"/>
+            <point key="canvasLocation" x="-382" y="828"/>
         </scene>
         <!--Edit-->
         <scene sceneID="lrj-lR-ug8">
@@ -981,7 +981,34 @@
                 </viewController>
                 <customObject id="jvQ-fj-Po9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="65" y="1808"/>
+            <point key="canvasLocation" x="-126" y="2031"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="JUf-Ub-izL">
+            <objects>
+                <viewController id="HFP-AW-BjN" sceneMemberID="viewController">
+                    <view key="view" id="Bsk-hd-Dqc">
+                        <rect key="frame" x="0.0" y="0.0" width="328" height="675"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="qI6-KJ-lp1">
+                                <rect key="frame" x="0.0" y="0.0" width="328" height="657"/>
+                                <connections>
+                                    <segue destination="XtU-4r-kb8" kind="embed" id="pGs-mZ-pmQ"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="qI6-KJ-lp1" secondAttribute="bottom" id="Ghs-l7-tSJ"/>
+                            <constraint firstItem="qI6-KJ-lp1" firstAttribute="leading" secondItem="Bsk-hd-Dqc" secondAttribute="leading" id="YX9-vN-mGS"/>
+                            <constraint firstItem="qI6-KJ-lp1" firstAttribute="top" secondItem="Bsk-hd-Dqc" secondAttribute="top" constant="18" id="k8f-Hk-Y9H"/>
+                            <constraint firstAttribute="trailing" secondItem="qI6-KJ-lp1" secondAttribute="trailing" id="lWc-4z-yaw"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="I3z-YT-qYv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="225" y="866"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Hig-KX-hwr">
@@ -1008,7 +1035,7 @@
                 </tabViewController>
                 <customObject id="Bje-0U-1MO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="252" y="1092"/>
+            <point key="canvasLocation" x="-125" y="1428"/>
         </scene>
         <!--Info-->
         <scene sceneID="Sm9-Ue-TXz">
@@ -1160,7 +1187,7 @@
                 </viewController>
                 <customObject id="A98-ec-5ZK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="397" y="1807.5"/>
+            <point key="canvasLocation" x="243" y="2031"/>
         </scene>
         <!--Text View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -1172,7 +1199,7 @@
                         <subviews>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sof-Pv-6dE">
                                 <rect key="frame" x="18" y="662" width="434" height="24"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fill" style="rounded" trackingMode="selectOne" id="fPn-yv-PmV">
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="rounded" trackingMode="selectOne" id="fPn-yv-PmV">
                                     <font key="font" metaFont="system"/>
                                     <segments>
                                         <segment label="Cuneiform"/>
@@ -1237,7 +1264,7 @@
                 </viewController>
                 <customObject id="2Tp-Fl-jBw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-333" y="1823"/>
+            <point key="canvasLocation" x="-562" y="2046"/>
         </scene>
     </scenes>
     <resources>
