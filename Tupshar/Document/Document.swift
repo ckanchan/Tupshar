@@ -250,7 +250,7 @@ class Document: NSDocument {
         let panel = NSSavePanel()
         let title = metadata.title
         panel.nameFieldStringValue = title
-        panel.allowedFileTypes = ["doc"]
+        panel.allowedFileTypes = ["docx"]
         panel.message = "Export as Microsoft Word Document"
         panel.prompt = "Export"
         
@@ -298,13 +298,12 @@ class Document: NSDocument {
         strings.forEach{docstring.append($0)}
         
         let docAttributes: [NSAttributedString.DocumentAttributeKey: Any] = [
-            .documentType: NSAttributedString.DocumentType.docFormat,
+            .documentType: NSAttributedString.DocumentType.officeOpenXML,
             .title: metadata.title,
             .author: metadata.ancientAuthor ?? ""
         ]
         
-        
-        let data = docstring.docFormat(from: NSMakeRange(0, docstring.length), documentAttributes: docAttributes)
+        let data = try? docstring.data(from: NSMakeRange(0, docstring.length), documentAttributes: docAttributes)
         
         return data
     }
