@@ -1,6 +1,6 @@
 //
 //  NSViewControllerExtensions.swift
-//  Tupshar: novelty cuneiform text editor
+//  Tupshar: cuneiform text editor
 //  Copyright (C) 2018 Chaitanya Kanchan
 //
 //  This program is free software: you can redistribute it and/or modify
