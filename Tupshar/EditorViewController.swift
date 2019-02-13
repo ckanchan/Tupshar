@@ -36,22 +36,39 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
         switch (normalBox.stringValue.isEmpty, translitBox.stringValue.isEmpty, translateBox.stringValue.isEmpty) {
         case (true, true, true) :
             document.currentLine += 1
-            view.window?.isDocumentEdited = true
         case (false, false, false) :
+            let position: Int
+            
+            if case let Document.Cursor.selection(position: currentPosition) = document.selectedNode {
+                position = currentPosition
+            } else {
+                position = document.nodes[document.currentLine]?.count ?? 1
+            }
+            
             let lemma = OraccCDLNode(normalisation: normalBox.stringValue.replaceATF(),
                                      transliteration: translitBox.stringValue.replaceATF(),
                                      translation: translateBox.stringValue.replaceATF(),
                                      cuneifier: cuneifier.cuneifySyllable,
                                      textID: document.textID,
                                      line: document.currentLine,
-                                     position: document.nodes[document.currentLine]?.count ?? 1)
+                                     position: position)
             
-            document.insertNode(lemma)
-            view.window?.isDocumentEdited = true
+            switch document.selectedNode {
+            case .none:
+                document.appendNode(lemma)
+            case .insertion(let position):
+                document.insertNode(lemma, at: position)
+            case .selection(let position):
+                guard let node = document.nodes[document.currentLine]?[position] else {return}
+                document.updateNode(oldNode: node, newNode: lemma)
+            }
+            
             
         default:
-            break
+            return
         }
+        document.updateChangeCount(.changeDone)
+        view.window?.isDocumentEdited = true
     }
     
     func textDidChange(_ notification: Notification) {

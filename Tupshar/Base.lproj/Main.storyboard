@@ -649,8 +649,8 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="tgc-V9-JuS"/>
-                                        <menuItem title="Show Node Editor" id="gy4-FN-prO">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Show Node Editor" keyEquivalent="u" id="gy4-FN-prO">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="showAdvancedNodes:" target="Ady-hI-5gd" id="LLu-m6-Gjx"/>
                                             </connections>

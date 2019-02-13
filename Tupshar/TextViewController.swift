@@ -21,7 +21,7 @@ import CDKSwiftOracc
 
 class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate {
     let defaultFormatting = NSFont.systemFont(ofSize: NSFont.systemFontSize).makeDefaultPreferences()
-    let cuneiformNA = NSFont.init(name: "CuneiformNAOutline Medium", size: NSFont.systemFontSize)
+    let cuneiformNA = NSFont(name: "CuneiformNAOutline Medium", size: NSFont.systemFontSize)
     
     @IBOutlet weak var textSelect: NSSegmentedControl!
     @IBOutlet var ocdlView: OCDLView!
@@ -69,29 +69,29 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
         
         let range = textBox.selectedRange()
         if range.location == NSNotFound {
-            document.selectedNode = nil
+            document.selectedNode = .none
             return
         }
         
         guard let str = textBox.attributedSubstring(forProposedRange: range, actualRange: nil) else {
-            document.selectedNode = nil
+            document.selectedNode = .none
             return
         }
         
         let attributes = str.attributes(at: 0, effectiveRange: nil)
         guard let reference = attributes[.reference] as? String else {
-            document.selectedNode = nil
+            document.selectedNode = .none
             return
         }
         let pathComponents = reference.split(separator: ".")
         let path = pathComponents.compactMap{Int($0)}
         guard path.count == 2 else {
-            document.selectedNode = nil
+            document.selectedNode = .none
             return
         }
         
         document.currentLine = path[0]
-        document.selectedNode = path[1]
+        document.selectedNode = .selection(position: path[1])
         
     }
     

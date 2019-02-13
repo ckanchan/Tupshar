@@ -20,6 +20,12 @@ import Cocoa
 import CDKSwiftOracc
 
 class Document: NSDocument {
+    enum Cursor {
+        case none
+        case insertion(position: Int)
+        case selection(position: Int)
+    }
+    
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     
@@ -37,13 +43,15 @@ class Document: NSDocument {
         }
     }
     
-    var selectedNode: Int? {
+    var selectedNode: Cursor = .none {
         didSet {
-            if selectedNode == nil {
+            if case Cursor.none = selectedNode {
                 currentLine = nodes.count
             }
         }
     }
+    
+    
     
     var currentLine = 1 {
         didSet {
@@ -62,7 +70,7 @@ class Document: NSDocument {
     
     @IBAction func showAdvancedNodes(_ sender: Any) {
         guard let (wc, _) = RawCDLViewController.New(forDocument: self, viewDelegate: ocdlDelegate) else {return}
-        wc.window?.title = metadata.title + "- Node View"
+        wc.window?.title = metadata.title + " - Node View"
         wc.showWindow(self)
     }
     
@@ -71,7 +79,7 @@ class Document: NSDocument {
         NotificationCenter.default.post(notification)
     }
     
-    func insertNode(_ node: OraccCDLNode) {
+    func appendNode(_ node: OraccCDLNode) {
         switch node {
         case .l(let lemma):
             let lineNumber = Int(lemma.reference.path[0]) ?? currentLine
@@ -79,6 +87,27 @@ class Document: NSDocument {
             line.append(node)
             nodes[lineNumber] = line
             
+        default:
+            return
+        }
+    }
+    
+    func insertNode(_ node: OraccCDLNode, at position: Int) {
+        switch node {
+        case .l(let lemma):
+            guard let lineNumber = Int(lemma.reference.path[0]),
+                var line = nodes[lineNumber] else {return}
+            
+            let pre = Array(line.prefix(upTo: position))
+            let post = Array(line.suffix(from: position))
+            let corrected = post.map { node -> OraccCDLNode in
+                return node.updatePosition{ $0 + 1 }
+            }
+            
+            line = pre + [node] + corrected
+            nodes[lineNumber] = line
+            ocdlDelegate?.refreshView()
+            notifyDocumentChanged()
         default:
             return
         }
@@ -103,11 +132,11 @@ class Document: NSDocument {
     }
     
     func deleteNode() {
-        guard let nodeIdx = selectedNode,
+        guard case let Document.Cursor.selection(position: nodeIdx) = selectedNode,
             !nodes.isEmpty else {return}
         
         deleteNode(line: currentLine, position: nodeIdx)
-        selectedNode = nil
+        selectedNode = .none
     }
     
     func updateNode(oldNode: OraccCDLNode, newNode: OraccCDLNode) {
