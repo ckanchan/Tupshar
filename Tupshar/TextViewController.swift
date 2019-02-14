@@ -73,26 +73,68 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
             return
         }
         
-        guard let str = textBox.attributedSubstring(forProposedRange: range, actualRange: nil) else {
+        if range.length > 0 {
+            registerSelection(in: textBox, at: range)
+        } else {
+            registerInsertionPoint(in: textBox, at: range)
+        }
+    }
+    
+    func registerSelection(in textBox: NSTextView, at range: NSRange) {
+        guard let (line, position) = getPathComponents(in: textBox, at: range) else {
             document.selectedNode = .none
             return
         }
         
-        let attributes = str.attributes(at: 0, effectiveRange: nil)
-        guard let reference = attributes[.reference] as? String else {
+        document.currentLine = line
+        document.selectedNode = .selection(position: position)
+    }
+    
+    func registerInsertionPoint(in textBox: NSTextView, at range: NSRange) {
+        // If caret is at the end of the string then return.
+        guard range.location != textBox.attributedString().length else {
             document.selectedNode = .none
             return
         }
+        
+        // Move the range start caret back one character to create a selection
+        let location = range.location - 1
+        guard location > 0 else {
+            document.selectedNode = .none
+            return
+        }
+        
+        let newRange = NSMakeRange(location, 1)
+        
+        guard let (line, position) = getPathComponents(in: textBox, at: newRange) else {
+            document.selectedNode = .none
+            return
+        }
+        
+        // Move position point forward one a
+        let newPosition = position + 1
+        guard newPosition > 1 else {
+            document.selectedNode = .none
+            return
+        }
+        
+        document.currentLine = line
+        document.selectedNode = .insertion(position: newPosition)
+    }
+    
+    func getPathComponents(in textBox: NSTextView, at range: NSRange) -> (line: Int, position: Int)? {
+        guard let str = textBox.attributedSubstring(forProposedRange: range, actualRange: nil) else { return nil }
+        let attributes = str.attributes(at: 0, effectiveRange: nil)
+        guard let reference = attributes[.reference] as? String else { return nil  }
         let pathComponents = reference.split(separator: ".")
         let path = pathComponents.compactMap{Int($0)}
-        guard path.count == 2 else {
-            document.selectedNode = .none
-            return
-        }
         
-        document.currentLine = path[0]
-        document.selectedNode = .selection(position: path[1])
+        // Validate line and location
+        guard path.count == 2,
+            let line = document.nodes[path[0]],
+            line.count > path[1] else {return nil}
         
+        return (line: path[0], position: path[1])
     }
     
     override func viewWillAppear() {
