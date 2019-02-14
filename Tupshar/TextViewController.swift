@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TextViewController.swift
 //  Tupshar: cuneiform text editor
 //  Copyright (C) 2018 Chaitanya Kanchan
 //
@@ -37,17 +37,17 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
             ocdlView.font = cuneiformNA
             ocdlView.isEditable = false
             ocdlView.isSelectable = false
-            ocdlView.backgroundColor = NSColor.windowBackgroundColor
+            ocdlView.backgroundColor = .windowBackgroundColor
         case 1:
             ocdlView.textStorage?.setAttributedString(document.text.transliterated().render(withPreferences: defaultFormatting))
-            ocdlView.isEditable = false
-            ocdlView.isSelectable = false
-            ocdlView.backgroundColor = NSColor.windowBackgroundColor
+            ocdlView.isEditable = true
+            ocdlView.isSelectable = true
+            ocdlView.backgroundColor = .textBackgroundColor
         case 2:
             ocdlView.textStorage?.setAttributedString(document.text.normalised().render(withPreferences: defaultFormatting))
             ocdlView.isEditable = true
             ocdlView.isSelectable = true
-            ocdlView.backgroundColor = NSColor.textBackgroundColor
+            ocdlView.backgroundColor = .textBackgroundColor
             ocdlView.selectionGranularity = NSSelectionGranularity.selectByWord
             if ocdlView.isContinuousSpellCheckingEnabled {
                 ocdlView.toggleContinuousSpellChecking(self)
@@ -57,7 +57,7 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
             ocdlView.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
             ocdlView.isEditable = false
             ocdlView.isSelectable = false
-            ocdlView.backgroundColor = NSColor.windowBackgroundColor
+            ocdlView.backgroundColor = .windowBackgroundColor
         default:
             break
         }
