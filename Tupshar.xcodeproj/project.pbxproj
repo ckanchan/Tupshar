@@ -15,6 +15,7 @@
 		540F0F00221999D100439C6C /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F0EFF221999D100439C6C /* NotificationNames.swift */; };
 		540F0F02221999E300439C6C /* Dictionary+Flattened.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F0F01221999E300439C6C /* Dictionary+Flattened.swift */; };
 		540F0F0422199A5400439C6C /* Document+NodeStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F0F0322199A5400439C6C /* Document+NodeStoring.swift */; };
+		540F0F0C2219A33900439C6C /* TupsharTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F0F0B2219A33900439C6C /* TupsharTests.swift */; };
 		542D7AC021A0899B00705D3B /* ogsl.json in Resources */ = {isa = PBXBuildFile; fileRef = 542D7ABF21A0899B00705D3B /* ogsl.json */; };
 		544D3D282211B30E0018DE52 /* Advanced.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544D3D272211B30E0018DE52 /* Advanced.storyboard */; };
 		544D3D2A2211B3C50018DE52 /* RawCDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544D3D292211B3C50018DE52 /* RawCDLViewController.swift */; };
@@ -35,7 +36,18 @@
 		54F54EC320681AE000454079 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EC220681AE000454079 /* Document.swift */; };
 		54F54EC520681AE000454079 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54F54EC420681AE000454079 /* Assets.xcassets */; };
 		54F54EC820681AE000454079 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54F54EC620681AE000454079 /* Main.storyboard */; };
+		8B355D58E19A3EE564EC6758 /* Pods_Tupshar_TupsharTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4E9894C45B22C005944603 /* Pods_Tupshar_TupsharTests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		540F0F0E2219A33A00439C6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 54F54EB320681AE000454079 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 54F54EBA20681AE000454079;
+			remoteInfo = Tupshar;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5403E9552068E33100EF18CA /* CopyFiles */ = {
@@ -61,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		191892A7753212F2E210AF17 /* Pods-Tupshar-TupsharTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tupshar-TupsharTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tupshar-TupsharTests/Pods-Tupshar-TupsharTests.release.xcconfig"; sourceTree = "<group>"; };
 		540382BA22156A34003A9881 /* DocumentExports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentExports.swift; sourceTree = "<group>"; };
 		5403E9502068D21100EF18CA /* OCDLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCDLView.swift; sourceTree = "<group>"; };
 		5403E9542068E30A00EF18CA /* CuneiformNA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CuneiformNA.ttf; sourceTree = "<group>"; };
@@ -68,6 +81,9 @@
 		540F0EFF221999D100439C6C /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		540F0F01221999E300439C6C /* Dictionary+Flattened.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Flattened.swift"; sourceTree = "<group>"; };
 		540F0F0322199A5400439C6C /* Document+NodeStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Document+NodeStoring.swift"; sourceTree = "<group>"; };
+		540F0F092219A33900439C6C /* TupsharTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TupsharTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		540F0F0B2219A33900439C6C /* TupsharTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TupsharTests.swift; sourceTree = "<group>"; };
+		540F0F0D2219A33900439C6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		542D7ABF21A0899B00705D3B /* ogsl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ogsl.json; sourceTree = "<group>"; };
 		544D3D272211B30E0018DE52 /* Advanced.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Advanced.storyboard; sourceTree = "<group>"; };
 		544D3D292211B3C50018DE52 /* RawCDLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawCDLViewController.swift; sourceTree = "<group>"; };
@@ -91,12 +107,22 @@
 		54F54EC720681AE000454079 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54F54EC920681AE000454079 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54F54ECA20681AE000454079 /* Tupshar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tupshar.entitlements; sourceTree = "<group>"; };
+		8F4E9894C45B22C005944603 /* Pods_Tupshar_TupsharTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tupshar_TupsharTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		901C19168E8AE9287D47F9D3 /* Pods-Tupshar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tupshar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tupshar/Pods-Tupshar.debug.xcconfig"; sourceTree = "<group>"; };
+		B9720B62F5706FEFFC33CFAE /* Pods-Tupshar-TupsharTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tupshar-TupsharTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tupshar-TupsharTests/Pods-Tupshar-TupsharTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8B0BBE13B96977857F8CBB6 /* Pods-Tupshar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tupshar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tupshar/Pods-Tupshar.release.xcconfig"; sourceTree = "<group>"; };
 		F2EA605869B03FD1B64AA750 /* Pods_Tupshar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tupshar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		540F0F062219A33900439C6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B355D58E19A3EE564EC6758 /* Pods_Tupshar_TupsharTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		54F54EB820681AE000454079 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -117,6 +143,15 @@
 				540F0EFF221999D100439C6C /* NotificationNames.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		540F0F0A2219A33900439C6C /* TupsharTests */ = {
+			isa = PBXGroup;
+			children = (
+				540F0F0B2219A33900439C6C /* TupsharTests.swift */,
+				540F0F0D2219A33900439C6C /* Info.plist */,
+			);
+			path = TupsharTests;
 			sourceTree = "<group>";
 		};
 		5472DDAA220C1CDB00C7333F /* Document */ = {
@@ -157,6 +192,7 @@
 			children = (
 				54D81F552068F0DF002B4C5A /* Resources */,
 				54F54EBD20681AE000454079 /* Tupshar */,
+				540F0F0A2219A33900439C6C /* TupsharTests */,
 				54F54EBC20681AE000454079 /* Products */,
 				DDEAE70DB778DF16FA2DEE3B /* Pods */,
 				D544281B7BA2A53B18E1292A /* Frameworks */,
@@ -167,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				54F54EBB20681AE000454079 /* Tupshar.app */,
+				540F0F092219A33900439C6C /* TupsharTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				F2EA605869B03FD1B64AA750 /* Pods_Tupshar.framework */,
+				8F4E9894C45B22C005944603 /* Pods_Tupshar_TupsharTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -207,6 +245,8 @@
 			children = (
 				901C19168E8AE9287D47F9D3 /* Pods-Tupshar.debug.xcconfig */,
 				C8B0BBE13B96977857F8CBB6 /* Pods-Tupshar.release.xcconfig */,
+				B9720B62F5706FEFFC33CFAE /* Pods-Tupshar-TupsharTests.debug.xcconfig */,
+				191892A7753212F2E210AF17 /* Pods-Tupshar-TupsharTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -214,6 +254,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		540F0F082219A33900439C6C /* TupsharTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 540F0F102219A33A00439C6C /* Build configuration list for PBXNativeTarget "TupsharTests" */;
+			buildPhases = (
+				7EFC2E298A48C28534941E51 /* [CP] Check Pods Manifest.lock */,
+				540F0F052219A33900439C6C /* Sources */,
+				540F0F062219A33900439C6C /* Frameworks */,
+				540F0F072219A33900439C6C /* Resources */,
+				E3EBD6CE740C9ACCA658D478 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				540F0F0F2219A33A00439C6C /* PBXTargetDependency */,
+			);
+			name = TupsharTests;
+			productName = TupsharTests;
+			productReference = 540F0F092219A33900439C6C /* TupsharTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		54F54EBA20681AE000454079 /* Tupshar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 54F54ECD20681AE000454079 /* Build configuration list for PBXNativeTarget "Tupshar" */;
@@ -241,10 +301,15 @@
 		54F54EB320681AE000454079 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Chaitanya Kanchan";
 				TargetAttributes = {
+					540F0F082219A33900439C6C = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 54F54EBA20681AE000454079;
+					};
 					54F54EBA20681AE000454079 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
@@ -277,11 +342,19 @@
 			projectRoot = "";
 			targets = (
 				54F54EBA20681AE000454079 /* Tupshar */,
+				540F0F082219A33900439C6C /* TupsharTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		540F0F072219A33900439C6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		54F54EB920681AE000454079 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -298,6 +371,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7EFC2E298A48C28534941E51 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tupshar-TupsharTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AA43119E335B07869004EC51 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -334,9 +429,39 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E3EBD6CE740C9ACCA658D478 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tupshar-TupsharTests/Pods-Tupshar-TupsharTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CDKSwiftOracc/CDKSwiftOracc.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CDKSwiftOracc.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tupshar-TupsharTests/Pods-Tupshar-TupsharTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		540F0F052219A33900439C6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				540F0F0C2219A33900439C6C /* TupsharTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		54F54EB720681AE000454079 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,6 +491,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		540F0F0F2219A33A00439C6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 54F54EBA20681AE000454079 /* Tupshar */;
+			targetProxy = 540F0F0E2219A33A00439C6C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		54F54EC620681AE000454079 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -378,6 +511,47 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		540F0F112219A33A00439C6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9720B62F5706FEFFC33CFAE /* Pods-Tupshar-TupsharTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7C57J6H3NZ;
+				INFOPLIST_FILE = TupsharTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = me.chaidk.TupsharTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tupshar.app/Contents/MacOS/Tupshar";
+			};
+			name = Debug;
+		};
+		540F0F122219A33A00439C6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191892A7753212F2E210AF17 /* Pods-Tupshar-TupsharTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7C57J6H3NZ;
+				INFOPLIST_FILE = TupsharTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = me.chaidk.TupsharTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tupshar.app/Contents/MacOS/Tupshar";
+			};
+			name = Release;
+		};
 		54F54ECB20681AE000454079 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -531,6 +705,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		540F0F102219A33A00439C6C /* Build configuration list for PBXNativeTarget "TupsharTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				540F0F112219A33A00439C6C /* Debug */,
+				540F0F122219A33A00439C6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		54F54EB620681AE000454079 /* Build configuration list for PBXProject "Tupshar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -10,4 +10,7 @@ target 'Tupshar' do
   # Pods for Tupshar
   pod 'CDKSwiftOracc'
 
+  target 'TupsharTests' do
+    inherit! :complete
+  end
 end
