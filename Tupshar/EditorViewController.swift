@@ -28,25 +28,24 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var documentTranslationBox: NSTextView!
     
     override func viewWillAppear() {
+        super.viewWillAppear()
         NotificationCenter.default.addObserver(self, selector: #selector(displaySelectedNode), name: NSNotification.Name.nodeSelected, object: document)
         documentTranslationBox.string = document.translation
     }
     
     override func viewWillDisappear() {
+        super.viewWillDisappear()
         NotificationCenter.default.removeObserver(self)
     }
     
     @objc func displaySelectedNode() {
-        guard case let Document.Cursor.selection(position: currentPosition) = document.selectedNode,
-            let node = document.nodes[document.currentLine]?[currentPosition],
-            let values = OraccCDLNode.extractLemmaData(from: node) else {clearBoxes(); return}
+        guard case let Document.Cursor.selection(line: selectedLine, position: selectedPosition) = document.cursorPosition,
+            let node = document.nodes[selectedLine]?[selectedPosition],
+            let values = node.extractLemmaData() else {clearBoxes(); return}
         
         normalBox.stringValue = values.normalisation
         translitBox.stringValue = values.transliteration
         translateBox.stringValue = values.translation
-        
-        
-        
     }
 
     func clearBoxes() {
@@ -58,32 +57,23 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
     @IBAction func insertNode(_ sender: Any) {
         switch (normalBox.stringValue.isEmpty, translitBox.stringValue.isEmpty, translateBox.stringValue.isEmpty) {
         case (true, true, true) :
-            document.currentLine += 1
+            document.incrementLine()
         case (false, false, false) :
-            let position: Int
             
-            if case let Document.Cursor.selection(position: currentPosition) = document.selectedNode {
-                position = currentPosition
-            } else {
-                position = document.nodes[document.currentLine]?.count ?? 1
-            }
             
-            let lemma = OraccCDLNode(normalisation: normalBox.stringValue.replaceATF(),
-                                     transliteration: translitBox.stringValue.replaceATF(),
-                                     translation: translateBox.stringValue.replaceATF(),
-                                     cuneifier: cuneifier.cuneifySyllable,
-                                     textID: document.textID,
-                                     line: document.currentLine,
-                                     position: position)
-            
-            switch document.selectedNode {
-            case .none:
-                document.appendNode(lemma)
-            case .insertion(let position):
-                document.insertNode(lemma, at: position)
-            case .selection(let position):
-                guard let node = document.nodes[document.currentLine]?[position] else {return}
-                document.updateNode(oldNode: node, newNode: lemma)
+            switch document.cursorPosition {
+            case .append:
+                document.appendLemma(normalisation: normalBox.stringValue,
+                                     transliteration: translitBox.stringValue,
+                                     translation: translateBox.stringValue)
+            case .insertion:
+                document.insertLemma(normalisation: normalBox.stringValue,
+                                     transliteration: translitBox.stringValue,
+                                     translation: translateBox.stringValue)
+            case .selection:
+                document.modifyLemma(normalisation: normalBox.stringValue,
+                                     transliteration: translitBox.stringValue,
+                                     translation: translateBox.stringValue)
             }
             
             

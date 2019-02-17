@@ -25,7 +25,10 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
     
     @IBOutlet weak var textSelect: NSSegmentedControl!
     @IBOutlet var ocdlView: OCDLView!
-
+    @IBOutlet weak var lineLabel: NSTextField!
+    @IBOutlet weak var positionLabel: NSTextField!
+    @IBOutlet weak var modeLabel: NSTextField!
+    
     @IBAction func changeText(_ sender: Any) {
         refreshView()
     }
@@ -63,13 +66,28 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
         }
     }
     
+    @objc func setStatusLabels() {
+        let mode = document.cursorPosition
+        switch mode {
+        case .append:
+            modeLabel.stringValue = "Append"
+        case .insertion:
+            modeLabel.stringValue = "Insert"
+        case .selection:
+            modeLabel.stringValue = "Overwrite"
+        }
+        
+        positionLabel.stringValue = String(mode.position)
+        lineLabel.stringValue = String(mode.line)
+    }
+    
     func textViewDidChangeSelection(_ notification: Notification) {
         let textBox = notification.object! as! NSTextView
         guard textBox == self.ocdlView else {return}
         
         let range = textBox.selectedRange()
         if range.location == NSNotFound {
-            document.selectedNode = .none
+            document.setCursorToEnd()
             return
         }
         
@@ -82,44 +100,42 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
     
     func registerSelection(in textBox: NSTextView, at range: NSRange) {
         guard let (line, position) = getPathComponents(in: textBox, at: range) else {
-            document.selectedNode = .none
+            document.setCursorToEnd()
             return
         }
         
-        document.currentLine = line
-        document.selectedNode = .selection(position: position)
+        document.cursorPosition = .selection(line: line, position: position)
     }
     
     func registerInsertionPoint(in textBox: NSTextView, at range: NSRange) {
         // If caret is at the end of the string then return.
         guard range.location != textBox.attributedString().length else {
-            document.selectedNode = .none
+            document.setCursorToEnd()
             return
         }
         
         // Move the range start caret back one character to create a selection
         let location = range.location - 1
         guard location > 0 else {
-            document.selectedNode = .none
+            document.setCursorToEnd()
             return
         }
         
         let newRange = NSMakeRange(location, 1)
         
         guard let (line, position) = getPathComponents(in: textBox, at: newRange) else {
-            document.selectedNode = .none
+            document.setCursorToEnd()
             return
         }
         
         // Move position point forward one a
         let newPosition = position + 1
         guard newPosition > 1 else {
-            document.selectedNode = .none
+            document.setCursorToEnd()
             return
         }
         
-        document.currentLine = line
-        document.selectedNode = .insertion(position: newPosition)
+        document.cursorPosition = .insertion(line: line, position: newPosition)
     }
     
     func getPathComponents(in textBox: NSTextView, at range: NSRange) -> (line: Int, position: Int)? {
@@ -142,8 +158,14 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
         refreshView()
         ocdlView.ocdlDelegate = self
         document.ocdlDelegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(setStatusLabels), name: .nodeSelected, object: document)
     }
 
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.

@@ -148,7 +148,7 @@ class RawCDLViewController: NSViewController, NSTableViewDataSource, NSTableView
             
             
         case "transliteration":
-            guard let lemmaValues = OraccCDLNode.extractLemmaData(from: node),
+            guard let lemmaValues = node.extractLemmaData(),
                 lemmaValues.transliteration != sender.stringValue else {return}
             let newLemma = OraccCDLNode(normalisation: lemmaValues.normalisation,
                                         transliteration: sender.stringValue,
@@ -161,7 +161,7 @@ class RawCDLViewController: NSViewController, NSTableViewDataSource, NSTableView
             newNode = newLemma
             
         case "normalisation":
-            guard let lemmaValues = OraccCDLNode.extractLemmaData(from: node),
+            guard let lemmaValues = node.extractLemmaData(),
                 lemmaValues.normalisation != sender.stringValue else {return}
             let newLemma = OraccCDLNode(normalisation: sender.stringValue,
                                         transliteration: lemmaValues.transliteration,
@@ -173,7 +173,7 @@ class RawCDLViewController: NSViewController, NSTableViewDataSource, NSTableView
             
             newNode = newLemma
         case "translation":
-            guard let lemmaValues = OraccCDLNode.extractLemmaData(from: node),
+            guard let lemmaValues = node.extractLemmaData(),
                 lemmaValues.translation != sender.stringValue else {return}
             let newLemma = OraccCDLNode(normalisation: lemmaValues.normalisation,
                                         transliteration: lemmaValues.transliteration,

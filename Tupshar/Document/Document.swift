@@ -20,12 +20,6 @@ import Cocoa
 import CDKSwiftOracc
 
 class Document: NSDocument {
-    enum Cursor {
-        case none
-        case insertion(position: Int)
-        case selection(position: Int)
-    }
-    
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     
@@ -33,6 +27,8 @@ class Document: NSDocument {
     var metadata: OraccCatalogEntry
     var text: OraccTextEdition
     var translation: String
+    
+    var nodeStore: NodeStore
     
     var nodes: [Int: [OraccCDLNode]] = [:] {
         didSet {
@@ -43,25 +39,16 @@ class Document: NSDocument {
         }
     }
     
-    var selectedNode: Cursor = .none {
+    var cursorPosition: Cursor = .append(line: 1, position: 1) {
         didSet {
-            if case Cursor.none = selectedNode {
-                currentLine = nodes.count
+            if nodes[cursorPosition.line] == nil {
+                nodes[cursorPosition.line] = [OraccCDLNode(lineBreakLabel: "\(cursorPosition.line)")]
             }
             let notification = Notification(name: .nodeSelected, object: self, userInfo: nil)
             NotificationCenter.default.post(notification)
         }
     }
     
-    
-    
-    var currentLine = 1 {
-        didSet {
-            if !nodes.keys.contains(currentLine) {
-                nodes[currentLine] = [OraccCDLNode(lineBreakLabel: "\(currentLine)")]
-            }
-        }
-    }
     
     var cuneifier: Cuneifier {
         let delegate = NSApplication.shared.delegate! as! AppDelegate
@@ -81,41 +68,70 @@ class Document: NSDocument {
         NotificationCenter.default.post(notification)
     }
     
-    func appendNode(_ node: OraccCDLNode) {
-        switch node {
-        case .l(let lemma):
-            let lineNumber = Int(lemma.reference.path[0]) ?? currentLine
-            var line = nodes[lineNumber] ?? [OraccCDLNode(lineBreakLabel: "\(lineNumber)")]
-            line.append(node)
-            nodes[lineNumber] = line
-            
-        default:
-            return
-        }
+    func incrementLine() {
+        let newLine = cursorPosition.line + 1
+        let newPosition = nodes[newLine]?.count ?? 1
+        cursorPosition = .append(line: newLine, position: newPosition)
     }
     
-    func insertNode(_ node: OraccCDLNode, at position: Int) {
-        switch node {
-        case .l(let lemma):
-            guard let lineNumber = Int(lemma.reference.path[0]),
-                var line = nodes[lineNumber] else {return}
-            
+    func appendLemma(normalisation: String, transliteration: String, translation: String) {
+        guard case let Cursor.append(line: lineNumber, position: position) = cursorPosition else {return}
+        let lemma = OraccCDLNode(normalisation: normalisation.replaceATF(),
+                                 transliteration: transliteration.replaceATF(),
+                                 translation: transliteration.replaceATF(),
+                                 cuneifier: cuneifier.cuneifySyllable,
+                                 textID: textID,
+                                 line: lineNumber,
+                                 position: position)
+        var line = nodes[lineNumber, default: [OraccCDLNode(lineBreakLabel: String(lineNumber))]]
+        line.append(lemma)
+        nodes[lineNumber] = line
+        cursorPosition = .append(line: lineNumber, position: position + 1)
+    }
+    
+    
+    func insertLemma(normalisation: String, transliteration: String, translation: String) {
+        guard case let Cursor.insertion(line: lineNumber, position: position) = cursorPosition else {return}
+        var line = nodes[lineNumber, default: [OraccCDLNode(lineBreakLabel: String(lineNumber))]]
+        
+        // Check if the position is validly in the middle of the line
+        if line.count > position {
             let pre = Array(line.prefix(upTo: position))
             let post = Array(line.suffix(from: position))
             let corrected = post.map { node -> OraccCDLNode in
                 return node.updatePosition{ $0 + 1 }
             }
             
-            line = pre + [node] + corrected
+            let lemma = OraccCDLNode(normalisation: normalisation,
+                                     transliteration: transliteration,
+                                     translation: translation,
+                                     cuneifier: cuneifier.cuneifySyllable,
+                                     textID: textID,
+                                     line: lineNumber,
+                                     position: position)
+            
+            line = pre + [lemma] + corrected
             nodes[lineNumber] = line
-            ocdlDelegate?.refreshView()
-            notifyDocumentChanged()
-        default:
-            return
+            setCursorToEnd()
+
+            // otherwise append at the end of the line
+        } else {
+            cursorPosition = .append(line: lineNumber, position: line.count)
+            appendLemma(normalisation: normalisation,
+                        transliteration: transliteration,
+                        translation: translation)
+
         }
     }
     
-    func deleteNode(line lineNumber: Int, position: Int) {
+    func deleteNode() {
+        guard case let Cursor.selection(line: lineNumber, position: position) = cursorPosition else {return}
+
+        deleteNode(lineNumber: lineNumber, position: position)
+        cursorPosition = .append(line: nodes.count, position: nodes[nodes.count]?.count ?? 0)
+    }
+    
+    func deleteNode(lineNumber: Int, position: Int) {
         guard var line = nodes[lineNumber] else {return}
         if position < line.count - 1 {
             let pre = Array(line.prefix(upTo: position))
@@ -129,16 +145,22 @@ class Document: NSDocument {
         }
         
         nodes[lineNumber] = line
-        ocdlDelegate?.refreshView()
-        notifyDocumentChanged()
     }
     
-    func deleteNode() {
-        guard case let Document.Cursor.selection(position: nodeIdx) = selectedNode,
-            !nodes.isEmpty else {return}
+    func modifyLemma(normalisation: String, transliteration: String, translation: String) {
+        guard case let Cursor.selection(line: lineNumber, position: position) = cursorPosition,
+            var line = nodes[lineNumber] else {return}
+
+        let lemma = OraccCDLNode(normalisation: normalisation,
+                                 transliteration: transliteration,
+                                 translation: translation,
+                                 cuneifier: cuneifier.cuneifySyllable,
+                                 textID: textID,
+                                 line: lineNumber,
+                                 position: position)
         
-        deleteNode(line: currentLine, position: nodeIdx)
-        selectedNode = .none
+        line[position] = lemma
+        nodes[lineNumber] = line
     }
     
     func updateNode(oldNode: OraccCDLNode, newNode: OraccCDLNode) {
@@ -150,13 +172,16 @@ class Document: NSDocument {
         let newLine = Int(newLemma.reference.path[0])!
         let newPosition = Int(newLemma.reference.path[1])!
         
+        // Modify the node in place
+        
         if (oldLine, oldPosition) == (newLine, newPosition) {
             guard var line = nodes[oldLine] else {return}
             line[oldPosition] = newNode
             nodes[newLine] = line
         } else {
             
-            deleteNode(line: oldLine, position: oldPosition)
+            // The node has been moved -- delete the old node and insert the new node at its new position
+            deleteNode(lineNumber: oldLine, position: oldPosition)
             
             var line = nodes[newLine] ?? [OraccCDLNode(lineBreakLabel: "\(newLine)")]
             if line.count > newPosition {
@@ -169,7 +194,6 @@ class Document: NSDocument {
                 let updatedLine = pre + [newNode] + corrected
                 line = updatedLine
             } else {
-                
                 guard case var OraccCDLNode.l(newLemma) = newNode else {return}
                 newLemma.reference.path[1] = String(line.count)
                 let correctedNode = OraccCDLNode.l(newLemma)
@@ -178,10 +202,12 @@ class Document: NSDocument {
             
             nodes[newLine] = line
         }
-        ocdlDelegate?.refreshView()
-        notifyDocumentChanged()
     }
     
+    func setCursorToEnd() {
+        let documentEndPosition = nodes[nodes.count, default: [OraccCDLNode(lineBreakLabel: String(nodes.count))]].count
+        cursorPosition = .append(line: nodes.count, position: documentEndPosition)
+    }
     
     override init() {
         let uuid = UUID().uuidString
@@ -200,7 +226,10 @@ class Document: NSDocument {
                                      textID: self.textID)
         
         self.translation = ""
-
+        let delegate = NSApplication.shared.delegate! as! AppDelegate
+        let cuneifier = delegate.cuneifier
+        
+        self.nodeStore = NodeStore(textID: self.textID, cuneifier: cuneifier)
         
         encoder.outputFormatting = .prettyPrinted
         super.init()
@@ -295,48 +324,6 @@ class Document: NSDocument {
                 }
             }
         }
-    }
-    
-    func convertToText() -> Data? {
-        let cuneiform = text.cuneiform
-        let transliteration  = text.transliteration
-        let normalisation = text.transcription
-        let translation = self.translation
-        
-        let exported = ExportedText(cuneiform: cuneiform,
-                                    transliteration: transliteration,
-                                    normalisation: normalisation,
-                                    translation: translation)
-        
-        guard let exportedData = try? encoder.encode(exported) else {return nil}
-        return exportedData
-    }
-    
-    func convertToDoc() -> Data? {
-        let exportFormatting = NSFont(name: "Helvetica", size: NSFont.systemFontSize)!.makeDefaultPreferences()
-        let cuneiformNA = NSFont(name: "CuneiformNAOutline Medium", size: NSFont.systemFontSize)!
-        
-        let cuneiform = NSMutableAttributedString(string: text.cuneiform)
-        cuneiform.addAttributes([NSAttributedString.Key.font: cuneiformNA], range: NSMakeRange(0, cuneiform.length))
-        
-        let transliteration = text.transliterated().render(withPreferences: exportFormatting)
-        let normalisation = text.normalised().render(withPreferences: exportFormatting)
-        let attributedTranslation = NSAttributedString(string: translation)
-        let lineBreak = NSAttributedString(string: "\n\n")
-        
-        let strings = [cuneiform, lineBreak, transliteration, lineBreak, normalisation, lineBreak, attributedTranslation]
-        let docstring = NSMutableAttributedString()
-        strings.forEach{docstring.append($0)}
-        
-        let docAttributes: [NSAttributedString.DocumentAttributeKey: Any] = [
-            .documentType: NSAttributedString.DocumentType.officeOpenXML,
-            .title: metadata.title,
-            .author: metadata.ancientAuthor ?? ""
-        ]
-        
-        let data = try? docstring.data(from: NSMakeRange(0, docstring.length), documentAttributes: docAttributes)
-        
-        return data
     }
 }
 

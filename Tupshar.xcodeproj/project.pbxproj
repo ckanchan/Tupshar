@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C532F00E6E8C594C644177C /* Pods_Tupshar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2EA605869B03FD1B64AA750 /* Pods_Tupshar.framework */; };
+		540382BB22156A34003A9881 /* DocumentExports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540382BA22156A34003A9881 /* DocumentExports.swift */; };
 		5403E9512068D21100EF18CA /* OCDLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5403E9502068D21100EF18CA /* OCDLView.swift */; };
 		5403E9562068E34200EF18CA /* CuneiformNA.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5403E9542068E30A00EF18CA /* CuneiformNA.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD380206A0C4C009E2834 /* EditorViewController.swift */; };
@@ -21,6 +22,9 @@
 		549F1DFA220A174900B93E02 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549F1DF9220A174900B93E02 /* InfoViewController.swift */; };
 		54AA082821A093D3002B43DF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 54AA082721A093D3002B43DF /* Credits.rtf */; };
 		54BF1CF2220DCC1C004D890C /* String+ReplaceATF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BF1CF1220DCC1C004D890C /* String+ReplaceATF.swift */; };
+		54C1B45C221865320067DAE7 /* NodeStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1B45B221865320067DAE7 /* NodeStoring.swift */; };
+		54C1B45E221866AC0067DAE7 /* NodeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1B45D221866AC0067DAE7 /* NodeStore.swift */; };
+		54C1B46022186ED90067DAE7 /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1B45F22186ED90067DAE7 /* Cursor.swift */; };
 		54CB5D7A2206147500CCCE0F /* NSViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CB5D792206147500CCCE0F /* NSViewControllerExtensions.swift */; };
 		54D81F582068F165002B4C5A /* docicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D81F512068EF62002B4C5A /* docicon.png */; };
 		54F54EBF20681AE000454079 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F54EBE20681AE000454079 /* AppDelegate.swift */; };
@@ -54,6 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		540382BA22156A34003A9881 /* DocumentExports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentExports.swift; sourceTree = "<group>"; };
 		5403E9502068D21100EF18CA /* OCDLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCDLView.swift; sourceTree = "<group>"; };
 		5403E9542068E30A00EF18CA /* CuneiformNA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CuneiformNA.ttf; sourceTree = "<group>"; };
 		540DD380206A0C4C009E2834 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +72,9 @@
 		549F1DF9220A174900B93E02 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		54AA082721A093D3002B43DF /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		54BF1CF1220DCC1C004D890C /* String+ReplaceATF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ReplaceATF.swift"; sourceTree = "<group>"; };
+		54C1B45B221865320067DAE7 /* NodeStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeStoring.swift; sourceTree = "<group>"; };
+		54C1B45D221866AC0067DAE7 /* NodeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeStore.swift; sourceTree = "<group>"; };
+		54C1B45F22186ED90067DAE7 /* Cursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cursor.swift; sourceTree = "<group>"; };
 		54CB5D792206147500CCCE0F /* NSViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewControllerExtensions.swift; sourceTree = "<group>"; };
 		54D81F512068EF62002B4C5A /* docicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = docicon.png; sourceTree = "<group>"; };
 		54F54EBB20681AE000454079 /* Tupshar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tupshar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,11 +106,22 @@
 			isa = PBXGroup;
 			children = (
 				54F54EC220681AE000454079 /* Document.swift */,
+				540382BA22156A34003A9881 /* DocumentExports.swift */,
 				5472DDAB220C1CFC00C7333F /* ExportedText.swift */,
 				5472DDAF220C1FC700C7333F /* DocumentError.swift */,
 				5472DDAD220C1EAA00C7333F /* TupsharFile.swift */,
 			);
 			path = Document;
+			sourceTree = "<group>";
+		};
+		54C1B45A2218652B0067DAE7 /* NodeStore */ = {
+			isa = PBXGroup;
+			children = (
+				54C1B45B221865320067DAE7 /* NodeStoring.swift */,
+				54C1B45F22186ED90067DAE7 /* Cursor.swift */,
+				54C1B45D221866AC0067DAE7 /* NodeStore.swift */,
+			);
+			path = NodeStore;
 			sourceTree = "<group>";
 		};
 		54D81F552068F0DF002B4C5A /* Resources */ = {
@@ -137,6 +156,7 @@
 		54F54EBD20681AE000454079 /* Tupshar */ = {
 			isa = PBXGroup;
 			children = (
+				54C1B45A2218652B0067DAE7 /* NodeStore */,
 				5472DDAA220C1CDB00C7333F /* Document */,
 				54F54EBE20681AE000454079 /* AppDelegate.swift */,
 				54BF1CF1220DCC1C004D890C /* String+ReplaceATF.swift */,
@@ -304,17 +324,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540382BB22156A34003A9881 /* DocumentExports.swift in Sources */,
 				54BF1CF2220DCC1C004D890C /* String+ReplaceATF.swift in Sources */,
 				54CB5D7A2206147500CCCE0F /* NSViewControllerExtensions.swift in Sources */,
 				5472DDAC220C1CFC00C7333F /* ExportedText.swift in Sources */,
 				544D3D2A2211B3C50018DE52 /* RawCDLViewController.swift in Sources */,
+				54C1B46022186ED90067DAE7 /* Cursor.swift in Sources */,
 				54F54EC120681AE000454079 /* TextViewController.swift in Sources */,
 				540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */,
 				54F54EBF20681AE000454079 /* AppDelegate.swift in Sources */,
 				546404412208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift in Sources */,
 				54F54EC320681AE000454079 /* Document.swift in Sources */,
+				54C1B45C221865320067DAE7 /* NodeStoring.swift in Sources */,
 				5472DDAE220C1EAA00C7333F /* TupsharFile.swift in Sources */,
 				549F1DFA220A174900B93E02 /* InfoViewController.swift in Sources */,
+				54C1B45E221866AC0067DAE7 /* NodeStore.swift in Sources */,
 				5403E9512068D21100EF18CA /* OCDLView.swift in Sources */,
 				5472DDB0220C1FC700C7333F /* DocumentError.swift in Sources */,
 			);

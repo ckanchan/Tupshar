@@ -20,8 +20,8 @@ import Foundation
 import CDKSwiftOracc
 
 extension OraccCDLNode {
-    static func extractLemmaData(from node: OraccCDLNode) -> (normalisation: String, transliteration: String, translation: String, textID: TextID, line: Int, position: Int)? {
-        guard case let OraccCDLNode.l(lemma) = node else {return nil}
+    func extractLemmaData() -> (normalisation: String, transliteration: String, translation: String, textID: TextID, line: Int, position: Int)? {
+        guard case let OraccCDLNode.l(lemma) = self else {return nil}
         let normalisation = lemma.wordForm.form
         let transliteration = lemma.fragment
         let translation = lemma.wordForm.translation.sense ?? ""
