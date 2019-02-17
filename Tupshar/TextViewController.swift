@@ -67,7 +67,7 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
     }
     
     @objc func setStatusLabels() {
-        let mode = document.cursorPosition
+        let mode = document.nodeStore.cursorPosition
         switch mode {
         case .append:
             modeLabel.stringValue = "Append"
@@ -87,7 +87,7 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
         
         let range = textBox.selectedRange()
         if range.location == NSNotFound {
-            document.setCursorToEnd()
+            document.nodeStore.setCursorToEnd()
             return
         }
         
@@ -100,42 +100,42 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
     
     func registerSelection(in textBox: NSTextView, at range: NSRange) {
         guard let (line, position) = getPathComponents(in: textBox, at: range) else {
-            document.setCursorToEnd()
+            document.nodeStore.setCursorToEnd()
             return
         }
         
-        document.cursorPosition = .selection(line: line, position: position)
+        document.nodeStore.cursorPosition = .selection(line: line, position: position)
     }
     
     func registerInsertionPoint(in textBox: NSTextView, at range: NSRange) {
         // If caret is at the end of the string then return.
         guard range.location != textBox.attributedString().length else {
-            document.setCursorToEnd()
+            document.nodeStore.setCursorToEnd()
             return
         }
         
         // Move the range start caret back one character to create a selection
         let location = range.location - 1
         guard location > 0 else {
-            document.setCursorToEnd()
+            document.nodeStore.setCursorToEnd()
             return
         }
         
         let newRange = NSMakeRange(location, 1)
         
         guard let (line, position) = getPathComponents(in: textBox, at: newRange) else {
-            document.setCursorToEnd()
+            document.nodeStore.setCursorToEnd()
             return
         }
         
         // Move position point forward one a
         let newPosition = position + 1
         guard newPosition > 1 else {
-            document.setCursorToEnd()
+            document.nodeStore.setCursorToEnd()
             return
         }
         
-        document.cursorPosition = .insertion(line: line, position: newPosition)
+        document.nodeStore.cursorPosition = .insertion(line: line, position: newPosition)
     }
     
     func getPathComponents(in textBox: NSTextView, at range: NSRange) -> (line: Int, position: Int)? {
@@ -147,7 +147,7 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
         
         // Validate line and location
         guard path.count == 2,
-            let line = document.nodes[path[0]],
+            let line = document.nodeStore.nodes[path[0]],
             line.count > path[1] else {return nil}
         
         return (line: path[0], position: path[1])
@@ -158,7 +158,7 @@ class TextViewController: NSViewController, NSTextViewDelegate, OCDLViewDelegate
         refreshView()
         ocdlView.ocdlDelegate = self
         document.ocdlDelegate = self
-        NotificationCenter.default.addObserver(self, selector: #selector(setStatusLabels), name: .nodeSelected, object: document)
+        NotificationCenter.default.addObserver(self, selector: #selector(setStatusLabels), name: .nodeSelected, object: document.nodeStore)
     }
 
     override func viewWillDisappear() {

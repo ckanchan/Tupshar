@@ -29,7 +29,7 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        NotificationCenter.default.addObserver(self, selector: #selector(displaySelectedNode), name: NSNotification.Name.nodeSelected, object: document)
+        NotificationCenter.default.addObserver(self, selector: #selector(displaySelectedNode), name: .nodeSelected, object: document)
         documentTranslationBox.string = document.translation
     }
     
@@ -39,8 +39,8 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
     }
     
     @objc func displaySelectedNode() {
-        guard case let Document.Cursor.selection(line: selectedLine, position: selectedPosition) = document.cursorPosition,
-            let node = document.nodes[selectedLine]?[selectedPosition],
+        guard case let Cursor.selection(line: selectedLine, position: selectedPosition) = document.nodeStore.cursorPosition,
+            let node = document.nodeStore.nodes[selectedLine]?[selectedPosition],
             let values = node.extractLemmaData() else {clearBoxes(); return}
         
         normalBox.stringValue = values.normalisation
@@ -57,11 +57,11 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
     @IBAction func insertNode(_ sender: Any) {
         switch (normalBox.stringValue.isEmpty, translitBox.stringValue.isEmpty, translateBox.stringValue.isEmpty) {
         case (true, true, true) :
-            document.incrementLine()
+            document.nodeStore.incrementLine()
         case (false, false, false) :
             
             
-            switch document.cursorPosition {
+            switch document.nodeStore.cursorPosition {
             case .append:
                 document.appendLemma(normalisation: normalBox.stringValue,
                                      transliteration: translitBox.stringValue,

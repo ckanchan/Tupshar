@@ -1,5 +1,5 @@
 //
-//  Cursor.swift
+//  NodeStoring.swift
 //  Tupshar: cuneiform text editor
 //  Copyright (C) 2019 Chaitanya Kanchan
 //
@@ -17,31 +17,13 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import Foundation
+import CDKSwiftOracc
 
-enum Cursor {
-    case append(line: Int, position: Int)
-    case insertion(line: Int, position: Int)
-    case selection(line: Int, position: Int)
+protocol NodeStoring {
+    func appendLemma(normalisation: String, transliteration: String, translation: String)
+    func modifyLemma(normalisation: String, transliteration: String, translation: String)
+    func insertLemma(normalisation: String, transliteration: String, translation: String)
     
-    var line: Int {
-        switch self {
-        case .append(line: let l, position: _):
-            return l
-        case .insertion(line: let l, position: _):
-            return l
-        case.selection(line: let l, position: _):
-            return l
-        }
-    }
-    
-    var position: Int {
-        switch self {
-        case .append(line: _, position: let p):
-            return p
-        case .insertion(line: _, position: let p):
-            return p
-        case.selection(line: _, position: let p):
-            return p
-        }
-    }
+    func updateNode(oldNode: OraccCDLNode, newNode: OraccCDLNode)
+    func deleteNode(lineNumber: Int, position: Int)
 }

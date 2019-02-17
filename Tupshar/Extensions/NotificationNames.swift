@@ -1,5 +1,5 @@
 //
-//  Cursor.swift
+//  NotificationNames.swift
 //  Tupshar: cuneiform text editor
 //  Copyright (C) 2019 Chaitanya Kanchan
 //
@@ -18,30 +18,11 @@
 
 import Foundation
 
-enum Cursor {
-    case append(line: Int, position: Int)
-    case insertion(line: Int, position: Int)
-    case selection(line: Int, position: Int)
-    
-    var line: Int {
-        switch self {
-        case .append(line: let l, position: _):
-            return l
-        case .insertion(line: let l, position: _):
-            return l
-        case.selection(line: let l, position: _):
-            return l
-        }
+extension Notification.Name {
+    static var documentChanged: Notification.Name {
+        return Notification.Name("documentChanged")
     }
-    
-    var position: Int {
-        switch self {
-        case .append(line: _, position: let p):
-            return p
-        case .insertion(line: _, position: let p):
-            return p
-        case.selection(line: _, position: let p):
-            return p
-        }
+    static var nodeSelected: Notification.Name {
+        return Notification.Name("nodeSelected")
     }
 }

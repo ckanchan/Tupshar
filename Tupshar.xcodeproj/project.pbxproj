@@ -12,6 +12,9 @@
 		5403E9512068D21100EF18CA /* OCDLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5403E9502068D21100EF18CA /* OCDLView.swift */; };
 		5403E9562068E34200EF18CA /* CuneiformNA.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5403E9542068E30A00EF18CA /* CuneiformNA.ttf */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		540DD381206A0C4C009E2834 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DD380206A0C4C009E2834 /* EditorViewController.swift */; };
+		540F0F00221999D100439C6C /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F0EFF221999D100439C6C /* NotificationNames.swift */; };
+		540F0F02221999E300439C6C /* Dictionary+Flattened.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F0F01221999E300439C6C /* Dictionary+Flattened.swift */; };
+		540F0F0422199A5400439C6C /* Document+NodeStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F0F0322199A5400439C6C /* Document+NodeStoring.swift */; };
 		542D7AC021A0899B00705D3B /* ogsl.json in Resources */ = {isa = PBXBuildFile; fileRef = 542D7ABF21A0899B00705D3B /* ogsl.json */; };
 		544D3D282211B30E0018DE52 /* Advanced.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544D3D272211B30E0018DE52 /* Advanced.storyboard */; };
 		544D3D2A2211B3C50018DE52 /* RawCDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544D3D292211B3C50018DE52 /* RawCDLViewController.swift */; };
@@ -62,6 +65,9 @@
 		5403E9502068D21100EF18CA /* OCDLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCDLView.swift; sourceTree = "<group>"; };
 		5403E9542068E30A00EF18CA /* CuneiformNA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CuneiformNA.ttf; sourceTree = "<group>"; };
 		540DD380206A0C4C009E2834 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		540F0EFF221999D100439C6C /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		540F0F01221999E300439C6C /* Dictionary+Flattened.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Flattened.swift"; sourceTree = "<group>"; };
+		540F0F0322199A5400439C6C /* Document+NodeStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Document+NodeStoring.swift"; sourceTree = "<group>"; };
 		542D7ABF21A0899B00705D3B /* ogsl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ogsl.json; sourceTree = "<group>"; };
 		544D3D272211B30E0018DE52 /* Advanced.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Advanced.storyboard; sourceTree = "<group>"; };
 		544D3D292211B3C50018DE52 /* RawCDLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawCDLViewController.swift; sourceTree = "<group>"; };
@@ -102,10 +108,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		540F0EFE221999AC00439C6C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				54BF1CF1220DCC1C004D890C /* String+ReplaceATF.swift */,
+				540F0F01221999E300439C6C /* Dictionary+Flattened.swift */,
+				546404402208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift */,
+				540F0EFF221999D100439C6C /* NotificationNames.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		5472DDAA220C1CDB00C7333F /* Document */ = {
 			isa = PBXGroup;
 			children = (
 				54F54EC220681AE000454079 /* Document.swift */,
+				540F0F0322199A5400439C6C /* Document+NodeStoring.swift */,
 				540382BA22156A34003A9881 /* DocumentExports.swift */,
 				5472DDAB220C1CFC00C7333F /* ExportedText.swift */,
 				5472DDAF220C1FC700C7333F /* DocumentError.swift */,
@@ -156,16 +174,15 @@
 		54F54EBD20681AE000454079 /* Tupshar */ = {
 			isa = PBXGroup;
 			children = (
+				540F0EFE221999AC00439C6C /* Extensions */,
 				54C1B45A2218652B0067DAE7 /* NodeStore */,
 				5472DDAA220C1CDB00C7333F /* Document */,
 				54F54EBE20681AE000454079 /* AppDelegate.swift */,
-				54BF1CF1220DCC1C004D890C /* String+ReplaceATF.swift */,
-				546404402208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift */,
 				54F54EC020681AE000454079 /* TextViewController.swift */,
+				5403E9502068D21100EF18CA /* OCDLView.swift */,
 				540DD380206A0C4C009E2834 /* EditorViewController.swift */,
 				549F1DF9220A174900B93E02 /* InfoViewController.swift */,
 				54CB5D792206147500CCCE0F /* NSViewControllerExtensions.swift */,
-				5403E9502068D21100EF18CA /* OCDLView.swift */,
 				54F54EC420681AE000454079 /* Assets.xcassets */,
 				54F54EC620681AE000454079 /* Main.storyboard */,
 				544D3D272211B30E0018DE52 /* Advanced.storyboard */,
@@ -324,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540F0F02221999E300439C6C /* Dictionary+Flattened.swift in Sources */,
 				540382BB22156A34003A9881 /* DocumentExports.swift in Sources */,
 				54BF1CF2220DCC1C004D890C /* String+ReplaceATF.swift in Sources */,
 				54CB5D7A2206147500CCCE0F /* NSViewControllerExtensions.swift in Sources */,
@@ -337,10 +355,12 @@
 				54F54EC320681AE000454079 /* Document.swift in Sources */,
 				54C1B45C221865320067DAE7 /* NodeStoring.swift in Sources */,
 				5472DDAE220C1EAA00C7333F /* TupsharFile.swift in Sources */,
+				540F0F00221999D100439C6C /* NotificationNames.swift in Sources */,
 				549F1DFA220A174900B93E02 /* InfoViewController.swift in Sources */,
 				54C1B45E221866AC0067DAE7 /* NodeStore.swift in Sources */,
 				5403E9512068D21100EF18CA /* OCDLView.swift in Sources */,
 				5472DDB0220C1FC700C7333F /* DocumentError.swift in Sources */,
+				540F0F0422199A5400439C6C /* Document+NodeStoring.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
