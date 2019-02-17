@@ -61,7 +61,7 @@ class Document: NSDocument {
         let delegate = NSApplication.shared.delegate! as! AppDelegate
         let cuneifier = delegate.cuneifier
         
-        self.nodeStore = NodeStore(textID: self.textID, cuneifier: cuneifier)
+        self.nodeStore = NodeStore(textID: self.textID, cuneifier: cuneifier.cuneifySyllable)
         
         self.text = nodeStore.createTextEdition(project: metadata.project)
         

@@ -21,7 +21,7 @@ import CDKSwiftOracc
 
 class NodeStore {
     let textID: TextID
-    let cuneifier: Cuneifier
+    let cuneifier: (String) -> String?
     
     var nodes: [Int: [OraccCDLNode]]
     var cursorPosition: Cursor = .append(line: 1, position: 1) {
@@ -52,7 +52,7 @@ class NodeStore {
                                 textID: textID)
     }
     
-    init(textID: TextID, cuneifier: Cuneifier, nodes: [Int:[OraccCDLNode]] = [1:[OraccCDLNode(lineBreakLabel: "1")]]) {
+    init(textID: TextID, cuneifier: @escaping (String) -> String?, nodes: [Int:[OraccCDLNode]] = [1:[OraccCDLNode(lineBreakLabel: "1")]]) {
         self.textID = textID
         self.nodes = nodes
         self.cuneifier = cuneifier
@@ -65,7 +65,7 @@ extension NodeStore: NodeStoring {
         let lemma = OraccCDLNode(normalisation: normalisation.replaceATF(),
                                  transliteration: transliteration.replaceATF(),
                                  translation: translation,
-                                 cuneifier: cuneifier.cuneifySyllable,
+                                 cuneifier: cuneifier,
                                  textID: textID,
                                  line: lineNumber,
                                  position: position)
@@ -79,10 +79,10 @@ extension NodeStore: NodeStoring {
         guard case let Cursor.selection(line: lineNumber, position: position) = cursorPosition,
             var line = nodes[lineNumber] else {return}
         
-        let lemma = OraccCDLNode(normalisation: normalisation,
-                                 transliteration: transliteration,
+        let lemma = OraccCDLNode(normalisation: normalisation.replaceATF(),
+                                 transliteration: transliteration.replaceATF(),
                                  translation: translation,
-                                 cuneifier: cuneifier.cuneifySyllable,
+                                 cuneifier: cuneifier,
                                  textID: textID,
                                  line: lineNumber,
                                  position: position)
@@ -103,10 +103,10 @@ extension NodeStore: NodeStoring {
                 return node.updatePosition{ $0 + 1 }
             }
             
-            let lemma = OraccCDLNode(normalisation: normalisation,
-                                     transliteration: transliteration,
-                                     translation: translation,
-                                     cuneifier: cuneifier.cuneifySyllable,
+            let lemma = OraccCDLNode(normalisation: normalisation.replaceATF(),
+                                     transliteration: transliteration.replaceATF(),
+                                     translation: translation.replaceATF(),
+                                     cuneifier: cuneifier,
                                      textID: textID,
                                      line: lineNumber,
                                      position: position)

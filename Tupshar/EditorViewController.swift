@@ -29,7 +29,7 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        NotificationCenter.default.addObserver(self, selector: #selector(displaySelectedNode), name: .nodeSelected, object: document)
+        NotificationCenter.default.addObserver(self, selector: #selector(displaySelectedNode), name: .nodeSelected, object: document.nodeStore)
         documentTranslationBox.string = document.translation
     }
     
