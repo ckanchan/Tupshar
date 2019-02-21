@@ -25,23 +25,19 @@ enum Cursor {
     
     var line: Int {
         switch self {
-        case .append(line: let l, position: _):
-            return l
-        case .insertion(line: let l, position: _):
-            return l
-        case.selection(line: let l, position: _):
-            return l
+        case .append(let line, _),
+             .insertion(let line, _),
+             .selection(let line, _):
+            return line
         }
     }
     
     var position: Int {
         switch self {
-        case .append(line: _, position: let p):
-            return p
-        case .insertion(line: _, position: let p):
-            return p
-        case.selection(line: _, position: let p):
-            return p
+        case .append(_, let position),
+             .insertion(_, let position),
+             .selection(_, let position):
+            return position
         }
     }
 }
