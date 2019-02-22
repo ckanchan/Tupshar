@@ -48,6 +48,12 @@ class Document: NSDocument {
         NotificationCenter.default.post(notification)
     }
     
+    func incrementLine() {
+        nodeStore.incrementLine()
+        self.text = nodeStore.createTextEdition(project: metadata.project)
+        ocdlDelegate?.refreshView()
+    }
+    
     override init() {
         let uuid = UUID().uuidString
         let textIDStr = "U" + uuid

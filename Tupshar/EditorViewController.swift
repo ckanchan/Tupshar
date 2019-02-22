@@ -57,7 +57,7 @@ class EditorViewController: NSViewController, NSTextViewDelegate {
     @IBAction func insertNode(_ sender: Any) {
         switch (normalBox.stringValue.isEmpty, translitBox.stringValue.isEmpty, translateBox.stringValue.isEmpty) {
         case (true, true, true) :
-            document.nodeStore.incrementLine()
+            document.incrementLine()
         case (false, false, false) :
             
             
