@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<script>
+  window.location.href = "../index.html?localePath=en.lproj#/topic-en.lproj-saveandexport";
+</script>
+<meta charset='UTF-8'>
+<meta content='0; url=../index.html?localePath=en.lproj#/topic-en.lproj-saveandexport' http-equiv='refresh'>
+<meta content='Steps on how to save a file, or export it in text or Microsoft Word formats.' name='description'>
+<title>Save and export a document</title>
+</head>
+<body class='AppleTopic' dir='ltr' id='topic-en.lproj-saveandexport'>
+<a name='saveandexport'></a>
+<figure class='topicIcon'>
+  <img src="/Resources/SharedGlobalAssets/convention/icon_256x256.png" srcset="/Resources/SharedGlobalAssets/convention/icon_256x256.png 1x, /Resources/SharedGlobalAssets/convention/icon_256x256@2x.png 2x" alt="Icon 256x256" />
+</figure>
+<h1>Save and export a document</h1>
+
+<p>To save a document, use the File -&gt; Save (⌘+S) command. In addition, Tupshar offers two export options:</p>
+
+<ul>
+  <li>
+    <p><strong>Export as Text</strong>: This option writes out the cuneiform, transliteration, normalisation, word-by-word translation and document translations into a JSON object saved to a text file, which can be opened in any editor for further modification.</p>
+  </li>
+  <li>
+    <p><strong>Export as Microsoft Word Document</strong>: This produces a formatted Microsoft Word .docx file, with cuneiform, transliteration, normalisation and document translation laid out one after the other with formatting applied as seen in Tupshar's text views.</p>
+  </li>
+</ul>
+
+<p>Other export formats such as RTF and PDF are planned for the future.</p>
+
+<div id="task_id_1" class="Task">
+<h2 class="Name" role="button" aria-controls="aria-task_id_1">
+    Cuneiform fonts
+</h2>
+<div class="TaskBody" role="region" id="aria-task_id_1">
+    <p>Tupshar comes provided with a cuneiform font builtin to allow it to display cuneiform text. However, if your system doesn't have one installed, other programs such as text editors or Microsoft Word will not be able to display these glyphs. A number of free fonts are available for download on the web:</p>
+
+    <ul>
+      <li>
+        <p><strong>CuneiformNA</strong>, <strong>CuneiformOB</strong> and <strong>CuneiformComposite</strong>: these fonts are provided free of charge at the <a href="http://oracc.museum.upenn.edu/doc/help/visitingoracc/fonts/index.html#h_cuneiformfonts">Oracc project</a> and cover the Neo-Assyrian and Old Babylonian variants of the script. Tupshar uses the CuneiformNA font.</p>
+      </li>
+      <li>
+        <p><strong>Noto Sans Cuneiform</strong>: part of Google's Noto font project, <a href="https://www.google.com/get/noto/#sans-xsux">downloadable here</a>. Uses Old Babylonian sign forms.</p>
+      </li>
+    </ul>
+
+  </div>      
+</div>
+
+<div id="task_id_2" class="Task">
+<h2 class="Name" role="button" aria-controls="aria-task_id_2">
+    Tupshar's File Format
+</h2>
+<div class="TaskBody" role="region" id="aria-task_id_2">
+    <p>Tupshar uses the <em>ocdl</em> file format and extension to save its files. This is a minor variant of the Oracc 'cuneiform chunks and lemmas' format, described in part <a href="http://oracc.museum.upenn.edu/doc/opendata/index.html">here</a>. The <em>ocdl</em> format wraps Oracc's "cdl" and "catalogue.member" types in a single JSON object, with an additional "translation" key to store the document translation:</p>
+
+    <p><code>json
+{"text": {
+    "cdl" : [CDL],
+    "project" : "project title",
+    "textid" : "UUID",
+    "type" : "modern"
+    },
+"metadata" : {
+    "ch_no" : "0",
+    "title" : "Document Title",
+    "id_text" : "UUID",
+    "display_name" : "Short Title",
+    "ancient_author" : "Document Author",
+    "project" : "project"
+    }
+}
+</code></p>
+
+    <p>Tupshar automatically generates a UUID for the text ID fields, and supplies defaults for others not exposed to the user in order to conform to Oracc specifications. Any of these fields can be manually edited in a text editor - as long as the result conforms to this specification it can be parsed by Tupshar.</p>
+
+  </div>      
+</div>
+
+</body>
+</html>

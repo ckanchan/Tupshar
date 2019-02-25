@@ -1,0 +1,152 @@
+{
+    "birdseed_version": 5,
+    "build_id": "0.4",
+    "build_date": "2019.02.25-15:21:42",
+    "collect_feedback": false,
+    "copyright": "topic-en.lproj-copyright",
+    "copyright_text": "© 2019 Chaitanya Kanchan. All rights reserved.",
+    "css": "",
+    "enable_tracking": false,
+    "framework": "middlemac-3.0.0",
+    "icon": "",
+    "landing": "topic-Resources-en.lproj",
+    "locale": "en",
+    "platform": "mac",
+    "printable_page": "",
+    "product": "Tupshar",
+    "quick_links": [],
+    "sections": {
+        "section-en.lproj-editor": {
+            "name": "The Editor",
+            "children": [
+                "topic-editor-page01_editorIntro",
+                "topic-editor-page02_lemmas",
+                "topic-editor-page03_textView",
+                "topic-editor-page04_info"
+            ]
+      }
+    },
+    "show_previous_next": false,
+    "source_schema": "apd-schema",
+    "title": "Tupshar Help",
+    "toc": [
+        "topic-en.lproj-welcome",
+        "section-en.lproj-editor",
+        "topic-en.lproj-saveandexport",
+        "topic-en.lproj-tupsharATF"
+    ],
+    "topics": {
+        "topic-Resources-en.lproj": {
+            "name": "Tupshar",
+            "href": "index.html",
+            "categories": [
+              "landing"
+            ]
+        },
+        "topic-asides-cuneiform": {
+            "name": "Cuneiform",
+            "summary": "Cuneiform text view",
+            "href": "asides/cuneiform.html",
+            "categories": [
+              "aside"
+            ]
+        },
+        "topic-asides-labat": {
+            "name": "Labat",
+            "summary": "Manuel d'épigraphie akkadienne",
+            "href": "asides/labat.html",
+            "categories": [
+              "aside"
+            ]
+        },
+        "topic-asides-mzl": {
+            "name": "MZL",
+            "summary": "Mesopotamisches Zeichenlexikon",
+            "href": "asides/mzl.html",
+            "categories": [
+              "aside"
+            ]
+        },
+        "topic-asides-normalisation": {
+            "name": "Normalisation",
+            "summary": "Normalisation text view",
+            "href": "asides/normalisation.html",
+            "categories": [
+              "aside"
+            ]
+        },
+        "topic-asides-translation": {
+            "name": "Word-by-word translation view",
+            "href": "asides/translation.html",
+            "categories": [
+              "aside"
+            ]
+        },
+        "topic-asides-transliteration": {
+            "name": "Transliteration",
+            "summary": "Transliteration text view",
+            "href": "asides/transliteration.html",
+            "categories": [
+              "aside"
+            ]
+        },
+        "topic-editor-page01_editorIntro": {
+            "name": "Overview",
+            "summary": "A high level overview of the editor window, Tupshar's main window.",
+            "href": "editor/page01_editorIntro.html",
+            "categories": [
+            ]
+        },
+        "topic-editor-page02_lemmas": {
+            "name": "Inserting and editing lemmas",
+            "summary": "Explains the concept of the lemma, its components, and how to add, edit and delete them.",
+            "href": "editor/page02_lemmas.html",
+            "categories": [
+            ]
+        },
+        "topic-editor-page03_textView": {
+            "name": "Using the text pane to view, select and delete",
+            "href": "editor/page03_textView.html",
+            "categories": [
+            ]
+        },
+        "topic-editor-page04_info": {
+            "name": "Adding metadata with the Info pane",
+            "summary": "Describes how to add document properties and metadata such as author and title.",
+            "href": "editor/page04_info.html",
+            "categories": [
+            ]
+        },
+        "topic-en.lproj-copyright": {
+            "name": "License",
+            "summary": "License Page",
+            "href": "copyright.html",
+            "categories": [
+              "copyright"
+            ]
+        },
+        "topic-en.lproj-saveandexport": {
+            "name": "Save and export a document",
+            "summary": "Steps on how to save a file, or export it in text or Microsoft Word formats.",
+            "href": "saveandexport.html",
+            "categories": [
+            ]
+        },
+        "topic-en.lproj-tupsharATF": {
+            "name": "Tupshar ATF",
+            "summary": "Enter special transliteration characters using standard English keyboard keys.",
+            "href": "tupsharATF.html",
+            "categories": [
+            ]
+        },
+        "topic-en.lproj-welcome": {
+            "name": "About Tupshar",
+            "summary": "Introduction to the software",
+            "href": "welcome.html",
+            "categories": [
+            ]
+        }
+    },
+    "urls": {},
+    "version": "0.4"
+}

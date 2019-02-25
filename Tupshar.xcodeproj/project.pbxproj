@@ -16,6 +16,7 @@
 		540F0F02221999E300439C6C /* Dictionary+Flattened.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F0F01221999E300439C6C /* Dictionary+Flattened.swift */; };
 		540F0F0422199A5400439C6C /* Document+NodeStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F0F0322199A5400439C6C /* Document+NodeStoring.swift */; };
 		540F0F0C2219A33900439C6C /* NodeStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F0F0B2219A33900439C6C /* NodeStoreTests.swift */; };
+		541226CD222440640064258D /* Tupshar_(main).help in Resources */ = {isa = PBXBuildFile; fileRef = 541226CC222440630064258D /* Tupshar_(main).help */; };
 		544D3D282211B30E0018DE52 /* Advanced.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544D3D272211B30E0018DE52 /* Advanced.storyboard */; };
 		544D3D2A2211B3C50018DE52 /* RawCDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544D3D292211B3C50018DE52 /* RawCDLViewController.swift */; };
 		546404412208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546404402208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift */; };
@@ -84,6 +85,7 @@
 		540F0F092219A33900439C6C /* TupsharTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TupsharTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		540F0F0B2219A33900439C6C /* NodeStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeStoreTests.swift; sourceTree = "<group>"; };
 		540F0F0D2219A33900439C6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		541226CC222440630064258D /* Tupshar_(main).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Tupshar_(main).help"; sourceTree = "<group>"; };
 		544D3D272211B30E0018DE52 /* Advanced.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Advanced.storyboard; sourceTree = "<group>"; };
 		544D3D292211B3C50018DE52 /* RawCDLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawCDLViewController.swift; sourceTree = "<group>"; };
 		546404402208AEB7007207E6 /* OraccCDLNode+ExtractLemma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OraccCDLNode+ExtractLemma.swift"; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		54F54EB220681AE000454079 = {
 			isa = PBXGroup;
 			children = (
+				541226CC222440630064258D /* Tupshar_(main).help */,
 				54D81F552068F0DF002B4C5A /* Resources */,
 				54F54EBD20681AE000454079 /* Tupshar */,
 				540F0F0A2219A33900439C6C /* TupsharTests */,
@@ -365,6 +368,7 @@
 				54F54EC820681AE000454079 /* Main.storyboard in Resources */,
 				54FFE526222176F00077BC85 /* ogsl.json in Resources */,
 				54D81F582068F165002B4C5A /* docicon.png in Resources */,
+				541226CD222440640064258D /* Tupshar_(main).help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

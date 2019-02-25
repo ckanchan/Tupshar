@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<script>
+  window.location.href = "../../index.html?localePath=en.lproj#/topic-editor-page03_textView";
+</script>
+<meta charset='UTF-8'>
+<meta content='0; url=../../index.html?localePath=en.lproj#/topic-editor-page03_textView' http-equiv='refresh'>
+<title>Using the text pane to view, select and delete</title>
+</head>
+<body class='AppleTopic' dir='ltr' id='topic-editor-page03_textView'>
+<a name='page03_textView'></a>
+<figure class='topicIcon'>
+  <img src="/Resources/SharedGlobalAssets/convention/icon_256x256.png" srcset="/Resources/SharedGlobalAssets/convention/icon_256x256.png 1x, /Resources/SharedGlobalAssets/convention/icon_256x256@2x.png 2x" alt="Icon 256x256" />
+</figure>
+<h1>Using the text pane to view, select and delete</h1>
+
+<p>The Text pane provides four different views into your document:</p>
+
+<ul>
+  <li><a href="topic-asides-cuneiform.html#topic-asides-cuneiform" aside="topic-asides-cuneiform" class="xRef Aside">Cuneiform</a></li>
+  <li><a href="topic-asides-transliteration.html#topic-asides-transliteration" aside="topic-asides-transliteration" class="xRef Aside">Transliteration</a></li>
+  <li><a href="topic-asides-normalisation.html#topic-asides-normalisation" aside="topic-asides-normalisation" class="xRef Aside">Normalisation</a></li>
+  <li><a href="topic-asides-translation.html#topic-asides-translation" aside="topic-asides-translation" class="xRef Aside">Word-by-word translation</a></li>
+</ul>
+
+<p>You can change the view using the tab bar at the top of the text pane.</p>
+
+<div id="task_id_1" class="Task">
+<h2 class="Name" role="button" aria-controls="aria-task_id_1">
+    Selecting, editing and deleting lemmas
+</h2>
+<div class="TaskBody" role="region" id="aria-task_id_1">
+    <p>In the <em>transliteration</em> and <em>normalisation</em> views, you can select individual lemmas for editing using the mouse or keyboard. The <em>mode line</em> at the bottom of the pane reflects the selection status:</p>
+
+    <p><figure>
+  <img src="/Resources/SharedGlobalAssets/images/selectedLemma.png" alt="Selected Lemma" />
+</figure></p>
+
+    <p>In this example, the second lemma of the second line has been selected, and its details are displayed in the Edit pane for modification. The <em>mode line</em> shows that when you press the <strong>+</strong> button or the Return key, the selected lemma will be overwritten with your changes. Alternatively, you can press the Backspace key to delete the selected lemma.</p>
+
+  </div>      
+</div>
+
+<div id="task_id_2" class="Task">
+<h2 class="Name" role="button" aria-controls="aria-task_id_2">
+    Inserting a lemma at a specific point
+</h2>
+<div class="TaskBody" role="region" id="aria-task_id_2">
+    <p>You can also insert a lemma at a specific point whilst in the <em>transliteration</em> or <em>normalisation</em> views. To do this, place the document insertion caret in between two lemmas:</p>
+
+    <p><figure>
+  <img src="/Resources/SharedGlobalAssets/images/insert01.png" alt="Insertion point" />
+</figure></p>
+
+    <p class="warning">If you place the insertion caret in the middle of a lemma, Tupshar assumes you want to insert <strong>before</strong> the lemma, not after. Otherwise, if you make a partial selection within the lemma, Tupshar counts it as a full selection and will assume that you want to make an edit.</p>
+
+    <p>When you place the insertion point, the <em>mode line</em> changes to show that when you press the <strong>+</strong> button or the Return key, it will <em>insert</em> a lemma at the caret point. In this example, the lemma will become the fourth lemma on the first line, and the following lemma positions will be incremented by one to allow for this.</p>
+
+    <p><figure>
+  <img src="/Resources/SharedGlobalAssets/images/insert02.png" alt="Inserting lemma details" />
+</figure></p>
+
+    <p>Once inserted, the document will look like this:</p>
+
+    <p><figure>
+  <img src="/Resources/SharedGlobalAssets/images/insert03.png" alt="Completed insertion operation" />
+</figure></p>
+
+    <p>Tupshar then sets the caret to its default position at the end of the document, ready for appending further lemmas. You can click in the text pane to re-place the caret for an insertion, editing or delete operation at this point.</p>
+
+  </div>      
+</div>
+
+
+<div class='LinkUniversal'>
+<strong>
+See Also
+</strong>
+<a href="#/topic-editor-page03_textView">Text View</a>
+
+</div>
+</body>
+</html>
